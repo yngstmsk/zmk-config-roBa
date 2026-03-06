@@ -162,9 +162,13 @@ endif
 ## GitHub Actions ビルド（build.yaml）
 
 3つのアーティファクト:
-- `roBa_right` : board=xiao_ble, shield=roBa_R
-- `roBa_left`  : board=xiao_ble, shield=roBa_L
-- `settings_reset` : board=xiao_ble, shield=settings_reset
+- `roBa_right` : board=xiao_ble//zmk, shield=roBa_R
+- `roBa_left`  : board=xiao_ble//zmk, shield=roBa_L
+- `settings_reset` : board=xiao_ble//zmk, shield=settings_reset
+
+**注意**: `xiao_ble` ではなく `xiao_ble//zmk` を使うこと。
+ZMK commit `a23aa009`（2026-03-03）で `ZMK_BOARD_COMPAT` チェックが追加され、
+zmk バリアントが存在するのに旧形式を使うとビルドが error で失敗する。
 
 ---
 
