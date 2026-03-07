@@ -129,13 +129,10 @@ CONFIG_BT_CTLR_PHY_2M=n
 | 1 | Layer1 | 記号・括弧 |
 | 2 | Layer2 | 矢印・数字 |
 | 3 | Layer3 | Fn・BT操作・エンコーダ設定 |
-| 4 | MOUSE | マウスボタン操作 |
-| 5 | SCROLL | スクロール操作 |
-| 6 | layer_6 | BT選択・bootloader |
+| 4 | layer_6 | BT選択・bootloader |
 
 **コンボ**:
-- key-positions 37+38 → `&to 4` (MOUSEレイヤー)
-- key-positions 39+38 → `&to 5` (SCROLLレイヤー)
+- key-positions 37+38 (MO1+MO2) → `&mo 3` (Layer3 一時有効化)
 
 **注意**: `&mkp LCLK`, `&mkp RCLK`, `&mkp MB3` を使用 → **両側とも `CONFIG_ZMK_POINTING=y` 必須**
 
