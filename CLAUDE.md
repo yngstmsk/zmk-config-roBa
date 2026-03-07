@@ -129,7 +129,8 @@ CONFIG_BT_CTLR_PHY_2M=n
 | 1 | Layer1 | 記号・括弧 |
 | 2 | Layer2 | 矢印・数字 |
 | 3 | Layer3 | Fn・BT操作・エンコーダ設定 |
-| 4 | layer_6 | BT選択・bootloader |
+| 4 | FN | FN+Y/U/I/O → F6/F7/F8/F9 |
+| 5 | layer_6 | BT選択・bootloader |
 
 **コンボ**:
 - key-positions 37+38 (MO1+MO2) → `&mo 3` (Layer3 一時有効化)
