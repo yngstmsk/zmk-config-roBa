@@ -194,6 +194,12 @@ zmk バリアントが存在するのに旧形式を使うとビルドが error 
 
 **既設定で問題なし**: `CONFIG_BT_CTLR_PHY_2M=n` は Intel/Realtek BT アダプタとの互換性対策として既に適用済み。
 
+3. **`xiao_ble//zmk` が `CONFIG_ZMK_USB=y` を強制する問題**
+   - `xiao_ble//zmk` の defconfig に `CONFIG_ZMK_USB=y` が含まれ、USB 接続時に BLE アドバタイズを行わなくなる。
+   - USB 経由でフラッシュした直後にそのまま BLE 接続を試みると、キーボードが BT スキャンに現れない。
+   - **対策**: 両 `.conf` に `CONFIG_ZMK_USB=n` を追加して上書き。roBa は無線専用キーボードであり USB HID 出力は不要。
+   - フラッシュは UF2 ブートローダー経由のため `CONFIG_ZMK_USB=n` でも書き込みには影響なし。
+
 #### この問題で試したが採用しなかった設定（将来の調査用）
 
 もし上記対策後も切断が続く場合の追加候補:
