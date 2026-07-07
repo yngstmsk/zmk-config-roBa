@@ -1,0 +1,7 @@
+config ZMK_LAYER_STATUS_BLE_HID
+    bool "Layer status in keyboard report via BLE HID"
+    default n
+    depends on ZMK_BLE && (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+    help
+      Embed the highest active layer index in the keyboard HID report
+      reserved byte (byte 1). Used by the roBa keymap overlay app on Windows.

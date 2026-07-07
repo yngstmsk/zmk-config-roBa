@@ -1,0 +1,6 @@
+if(CONFIG_ZMK_LAYER_STATUS_BLE_HID)
+  zephyr_library()
+  zephyr_library_sources(src/layer_status_ble_hid.c)
+  # ZMK app headers (zmk/*.h, dt-bindings/zmk/*.h)
+  zephyr_include_directories(${APPLICATION_SOURCE_DIR}/include)
+endif()

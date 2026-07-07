@@ -4257,4 +4257,526 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 ファーム側からオーバーレイアプリへのレイヤーステータス報告を実装する。
 
-west.yml に maatthc リモートと zmk-feature-appcompanion</details></think>
+west.yml に maatthc リモートと zmk-feature-appcompanion プロジェクトを追加する。roBa_R.conf に CONFIG_ZMK_LAYER_STATUS_BLE_HID を有効化する。ZMK のモジュール登録方法も確認する。
+
+west.yml に追加したプロジェクトは ZMK ユーザー設定ビルドで自動的にモジュールとして認識される。zephyr/module.yml のパス問題を確認し、既存ファイルを読み込んで実装を進める。</details></think>
+
+_**Agent (default)**_
+
+ファーム側の実装に着手します。変更前に現状を確認し、`west.yml` と `roBa_R.conf` を更新します。
+
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\west.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\boards\shields\roBa\roBa_R.conf</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/zephyr/module.yml"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "name: zmk-feature-appcompanion\nbuild:\n cmake: .\n kconfig: Kconfig\n",
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/zephyr/module.yml"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\CLAUDE.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+ファーム側の実装が承認された。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **c:\dev\zmk-config-roBa\.github** (1 file)
+
+| File |
+|------|
+| `../.github\workflows\build.yml` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/Kconfig"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "config ZMK_LAYER_STATUS_BLE_HID\n bool \"Layer status in keyboard report via BLE HID\"\n default y\n depends on (ZMK_BLE) \u0026\u0026 (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)\n help\n Embed layer number in the keyboard HID report's reserved byte.\n\nconfig ZMK_LAYER_STATUS_USB_HID\n bool \"Layer status via USB HID raw reports\"\n default y\n depends on (ZMK_USB) \u0026\u0026 (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)\n select USB_DEVICE_STACK\n select USB_DEVICE_HID\n help\n Send layer state changes via USB HID raw reports.\n Requires CONFIG_USB_HID_DEVICE_COUNT \u003e= 2.\n\nconfig ZMK_LAYER_STATUS_USB_HID_USAGE_PAGE\n hex \"USB HID Usage Page\"\n default 0xFF60\n depends on ZMK_LAYER_STATUS_USB_HID\n\nconfig ZMK_LAYER_STATUS_USB_HID_USAGE\n hex \"USB HID Usage\"\n default 0x61\n depends on ZMK_LAYER_STATUS_USB_HID\n",
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/Kconfig"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\.github\workflows\build.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+west.yml のプロジェクトは ZMK 以外を自動的に追加モジュールとして含める。標準的な ZMK ユーザー設定のワークフローだ。</details></think>
+
+_**Agent (default)**_
+
+承認済みのため、`west.yml` にモジュールを追加し、`roBa_R.conf` に BLE レイヤー通知設定を入れます。
+
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\west.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\boards\shields\roBa\roBa_R.conf</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+zmk_extra_modules などの追加設定が必要か確認している。</details></think>
+
+_**Agent (default)**_
+
+Error fetching URL, status code: 404 Not Found
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src?ref=main"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "[{\"name\":\"layer_status_ble_hid.c\",\"path\":\"src/layer_status_ble_hid.c\",\"sha\":\"63ee1a06f41e73c78e2f770b1e2ab2a866a56e93\",\"size\":1037,\"url\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src/layer_status_ble_hid.c?ref=main\",\"html_url\":\"https://github.com/maatthc/zmk-feature-appcompanion/blob/main/src/layer_status_ble_hid.c\",\"git_url\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/git/blobs/63ee1a06f41e73c78e2f770b1e2ab2a866a56e93\",\"download_url\":\"https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_ble_hid.c\",\"type\":\"file\",\"_links\":{\"self\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src/layer_status_ble_hid.c?ref=main\",\"git\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/git/blobs/63ee1a06f41e73c78e2f770b1e2ab2a866a56e93\",\"html\":\"https://github.com/maatthc/zmk-feature-appcompanion/blob/main/src/layer_status_ble_hid.c\"}},{\"name\":\"layer_status_usb_hid.c\",\"path\":\"src/layer_status_usb_hid.c\",\"sha\":\"e7a2efd61f61e65d99d9dbb69486366e018ac0e7\",\"size\":2844,\"url\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src/layer_status_usb_hid.c?ref=main\",\"html_url\":\"https://github.com/maatthc/zmk-feature-appcompanion/blob/main/src/layer_status_usb_hid.c\",\"git_url\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/git/blobs/e7a2efd61f61e65d99d9dbb69486366e018ac0e7\",\"download_url\":\"https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_usb_hid.c\",\"type\":\"file\",\"_links\":{\"self\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src/layer_status_usb_hid.c?ref=main\",\"git\":\"https://api.github.com/repos/maatthc/zmk-feature-appcompanion/git/blobs/e7a2efd61f61e65d99d9dbb69486366e018ac0e7\",\"html\":\"https://github.com/maatthc/zmk-feature-appcompanion/blob/main/src/layer_status_usb_hid.c\"}}]",
+  "url": "https://api.github.com/repos/maatthc/zmk-feature-appcompanion/contents/src?ref=main"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_ble_hid.c"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "/*\n * Embeds active layer number in keyboard HID report's reserved byte.\n */\n\n#include \n#include \n#include \n#include \n#include \n#include \n#include \n#include \n\nLOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);\n\nstatic uint8_t current_layer = 0;\n\nstatic int layer_status_embedded_listener(const zmk_event_t *eh) {\n const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);\n if (ev == NULL) {\n return -ENOTSUP;\n }\n\n uint8_t layer = zmk_keymap_highest_layer_active();\n\n if (layer == current_layer) {\n return 0;\n }\n current_layer = layer;\n\n struct zmk_hid_keyboard_report *report = zmk_hid_get_keyboard_report();\n report-\u003ebody._reserved = layer;\n\n zmk_endpoints_send_report(HID_USAGE_KEY);\n\n return 0;\n}\n\nZMK_LISTENER(layer_status_embedded, layer_status_embedded_listener);\nZMK_SUBSCRIPTION(layer_status_embedded, zmk_layer_state_changed);\n",
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_ble_hid.c"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+モジュールは標準ZMK APIを使用している。</details></think>
+
+_**Agent (default)**_
+
+ファーム側の変更を入れました。
+
+## 変更内容
+
+### 1. [`config/west.yml`](config/west.yml)
+
+[maatthc/zmk-feature-appcompanion](https://github.com/maatthc/zmk-feature-appcompanion) モジュールを追加しました。GitHub Actions ビルド時に `west update` で取得されます。
+
+### 2. [`config/boards/shields/roBa/roBa_R.conf`](config/boards/shields/roBa/roBa_R.conf)
+
+右側（Central）のみ、次を追加しました。
+
+```ini
+CONFIG_ZMK_LAYER_STATUS_BLE_HID=y
+```
+
+**動作:** レイヤーが変わるたび、BLE キーボード HID レポートの **byte1（予約バイト）** に現在の最高レイヤー番号（0〜5）が入ります。
+
+| 操作 | 送られる番号 |
+|------|-------------|
+| 通常 | 0 |
+| MO1 押下中 | 1 |
+| MO2 押下中 | 2 |
+| MO1+MO2 / `mo 3` | 3 |
+| FN（`mo 4`）押下中 | 4 |
+
+### 変更していないもの
+
+- **roBa_L.conf** — 左側は PC と直接つながらないため変更なし
+- **キーマップ** — MO1/MO2 の挙動はそのまま
+
+---
+
+## 次にやること
+
+1. **GitHub に push** して Actions ビルドを実行
+2. 成功したら **`roBa_right.uf2` だけ** 右側にフラッシュ
+3. 左側は **この変更だけなら再フラッシュ不要**
+4. 通常のキー入力・トラックボール・BLE 接続が問題ないか確認
+
+ビルドが失敗した場合は、ZMK `main` とモジュールの互換性の問題の可能性があります。そのときはログを共有してください。
+
+---
+
+## 注意
+
+- オーバーレイアプリは **まだレイヤー連動しません**（アプリ側の実装が次のステップ）
+- byte1 利用は HID の非標準的な使い方ですが、[zmk-feature-appcompanion](https://github.com/maatthc/zmk-feature-appcompanion) で実績のある方式です
+
+push してビルドを走らせますか？ それとも先にアプリ側（HID 受信・レイヤー切替）の実装に進みますか？
+
+---
+
+_**User**_
+
+pushしてビルドを走らせたがエラーが出た。調査結果以下の出力を得た
+
+Failure summary
+
+Build failed while compiling modules/zmk-feature-appcompanion/src/layer_status_ble_hid.c: fatal error: dt-bindings/zmk/hid_usage_pages.h: No such file or directory
+Root cause: the build cannot find the header dt-bindings/zmk/hid_usage_pages.h that layer_status_ble_hid.c includes. That header is part of ZMK/DT bindings and is not present on the compiler include path.
+Two straightforward solutions (pick one):
+
+Option A — Add the missing header into this repo (quick, local fix)
+
+Create a dt-bindings include path in the feature module and add the header.
+Update the module CMake so the directory is visible to the compiler.
+Example file additions/changes:
+
+Add file: zmk-feature-appcompanion/include/dt-bindings/zmk/hid_usage_pages.h (example minimal content — adjust to the actual symbols used by layer_status_ble_hid.c or copy the authoritative file from upstream ZMK)
+
+C
+/* SPDX-License-Identifier: MIT */
+#ifndef ZMK_HID_USAGE_PAGES_H
+#define ZMK_HID_USAGE_PAGES_H
+
+/* Example usage-page / usage defines — populate with the actual values required */
+#define HID_USAGE_PAGE_KEYBOARD 0x07
+#define HID_USAGE_PAGE_CONSUMER 0x0C
+
+/* Add any more usage constants this module expects, or copy the upstream file exactly. */
+
+#endif /* ZMK_HID_USAGE_PAGES_H */
+Edit zmk-feature-appcompanion/CMakeLists.txt — ensure include directory is added. Add (near the top or after zephyr_library declaration):
+
+CMake
+# Make the module include directory available
+zephyr_library_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+(If your tree uses a different CMake API, you can also use: zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include) or add include files via zephyr_library_sources and zephyr_compile_definitions — the important bit is to add the include dir so <dt-bindings/zmk/...> resolves.)
+
+Why this works: creating include/dt-bindings/zmk/ places the header at include/dt-bindings/zmk/hid_usage_pages.h, and adding the include dir makes the compiler able to resolve #include <dt-bindings/zmk/hid_usage_pages.h>.
+
+Option B — Add the authoritative DT bindings from upstream (recommended for correctness)
+
+The header appears to be part of ZMK/DT bindings. Rather than maintaining a local copy, add the upstream dt-bindings (or zmk app module) to your project so the canonical header is available and kept in sync.
+Two ways to do that:
+
+Add the zmk/app (or dt-bindings) repository as a west module in your manifest so west will fetch it (preferred if you use west). Example manifest snippet (manifest.yml):
+
+YAML
+projects:
+  - name: <owner>/zmk
+    path: zmk
+    revision: <commit-or-branch>
+Then ensure the module which provides dt-bindings installs them to the include path, or update module CMake to point to the upstream dt-bindings folder.
+
+Or add the upstream header(s) under a common include/dt-bindings/zmk/ directory in your repo by copying them from upstream ZMK. This is a one-off but ensures correct values.
+
+Why this is better: prevents drift and ensures you get the correct HID usage values that ZMK expects.
+
+Checks to run locally after the change
+
+git apply the CMake and header changes
+Run your local build steps used by CI, e.g.: west build -b xiao_ble zmk/app -d build or the same cmake/ninja commands your CI runs
+Verify no more "No such file" errors referencing dt-bindings/zmk.
+Notes and follow-ups
+
+If layer_status_ble_hid.c expects many defines from the real hid_usage_pages.h, copy the authoritative file from ZMK so you have all required defines instead of guessing a minimal set.
+If you maintain multiple ZMK feature modules, prefer Option B so a single source of truth provides all dt-bindings headers.
+If you want, I can:
+
+produce an exact patch (diff) for the CMakeLists.txt and for the header file using the authoritative upstream content (if you provide the upstream header or allow me to fetch it).
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+zmk-feature-appcompanion のビルドでエラーが発生した。
+
+古いZMK版向けのzmk-feature-appcompanionがdt-bindingsヘッダーを正しく含めていない。ローカルにモジュールをコピーしてCMakeLists.txtを修正するか、自前で最小限のlayer_statusモジュールを実装する方法を検討している。
+
+fetch した layer_status_ble_hid.c を確認した。hid_usage_pages.h から HID_USAGE_KEY を使っている。ZMK メインにこのヘッダーがあるか調べて west.yml のモジュールリビジョンを調整する方法も検討している。
+
+最も確実な解決策は、roBa config repo 内にローカル ZMK モジュールを新設することだ。BLE レイヤーステータスのコードだけを含め、ZMK の include パスに正しく依存する。これにより外部モジュールの依存関係を回避できる。
+
+zmk-feature-appcompanion の CMakeLists.txt に ZMK の include パスが追加されていないことが原因だと特定した。ローカルにパッチモジュールを置くか、west.yml を修正して固定版を使う方法を検討している。
+
+具体的なローカルモジュール構成を固めた。`config/modules/roba-layer-ble-hid/` 配下に zephyr/module.yml、Kconfig、CMakeLists.txt、src/layer_status_ble_hid.c を配置する。CMakeLists.txt では `zephyr_library` と `zephyr_link_libraries(zmk)` を正しく設定し、ZMK の include パスを明示的に追加する。ZMK_DIR が利用できない可能性もあるため、より堅牢な include 設定が必要だ。
+
+ZMK の標準的なモジュール構成を確認した。dt-bindings ヘッダーは通常 `zmk/app/include/dt-bindings` にある。maatthc から取得した外部モジュールは west.yml で直接修正できない。west.yml から該当モジュールを削除する方法を検討している。</details></think>
+
+_**Agent (default)**_
+
+ビルドエラーの原因を調査し、ローカルモジュールで修正します。
+
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/CMakeLists.txt"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "if(CONFIG_ZMK_LAYER_STATUS_USB_HID OR CONFIG_ZMK_LAYER_STATUS_BLE_HID)\n zephyr_library()\n zephyr_include_directories(include)\nendif()\n\nif(CONFIG_ZMK_LAYER_STATUS_USB_HID)\n zephyr_library_sources(src/layer_status_usb_hid.c)\nendif()\n\nif(CONFIG_ZMK_LAYER_STATUS_BLE_HID)\n zephyr_library_sources(src/layer_status_ble_hid.c)\nendif()\n",
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/CMakeLists.txt"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/zmkfirmware/zmk/main/app/include/dt-bindings/zmk/hid_usage_pages.h"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "/*\n * Copyright (c) 2020 The ZMK Contributors\n *\n * SPDX-License-Identifier: MIT\n *\n * Based on HID Usage Tables 1.21,\n * Copyright © 1996-2020, USB Implementers Forum,\n * https://www.usb.org/sites/default/files/hut1_21.pdf\n */\n\n#pragma once\n\n#define ZMK_HID_USAGE(page, id) ((page \u003c\u003c 16) | id)\n#define ZMK_HID_USAGE_ID(usage) (usage \u0026 0xFFFF)\n#define ZMK_HID_USAGE_PAGE(usage) ((usage \u003e\u003e 16) \u0026 0xFF)\n\n/* WARNING: DEPRECATED from dt-bindings/zmk/keys.h */\n#define USAGE_KEYPAD (0x07) // WARNING: DEPRECATED (DO NOT USE)\n#define USAGE_CONSUMER (0x0C) // WARNING: DEPRECATED (DO NOT USE)\n\n#define HID_USAGE_GD (0x01) // Generic Desktop\n#define HID_USAGE_SIM (0x02) // Simulation Controls\n#define HID_USAGE_VR (0x03) // VR Controls\n#define HID_USAGE_SPORT (0x04) // Sport Controls\n#define HID_USAGE_GAME (0x05) // Game Controls\n#define HID_USAGE_GDV (0x06) // Generic Device Controls\n#define HID_USAGE_KEY (0x07) // Keyboard/Keypad\n#define HID_USAGE_LED (0x08) // LED\n#define HID_USAGE_BUTTON (0x09) // Button\n#define HID_USAGE_TELEPHONY (0x0B) // Telephony Device\n#define HID_USAGE_CONSUMER (0x0C) // Consumer\n#define HID_USAGE_DIGITIZERS (0x0D) // Digitizers\n#define HID_USAGE_HAPTICS (0x0E) // Haptics\n#define HID_USAGE_PID (0x0F) // PID\n#define HID_USAGE_EHT (0x12) // Eye and Head Trackers\n#define HID_USAGE_AUXDISP (0x14) // Auxiliary Display\n#define HID_USAGE_SENSORS (0x20) // Sensors\n#define HID_USAGE_MEDICAL (0x40) // Medical Instrument\n#define HID_USAGE_BRAILLE (0x41) // Braille Display\n#define HID_USAGE_LIGHT (0x59) // Lighting And Illumination\n#define HID_USAGE_MONITOR (0x80) // USB Monitor\n#define HID_USAGE_MONITOR_VALUES (0x81) // Monitor Enumerated Values\n#define HID_USAGE_MONITOR_VESA (0x82) // VESA Virtual Control\n#define HID_USAGE_POWER (0x84) // Power\n#define HID_USAGE_POS_BARCODE (0x8C) // Bar Code Scanner\n#define HID_USAGE_POS_SCALE (0x8D) // Scale\n#define HID_USAGE_POS_MSR (0x8E) // Magnetic Stripe Reading (MSR) Devices\n#define HID_USAGE_POS_RESV (0x8F) // Reserved Point of Sale\n#define HID_USAGE_CAMERA (0x90) // Camera Control\n#define HID_USAGE_ARCADE (0x91) // Arcade\n#define HID_USAGE_GAMING (0x92) // Gaming Device\n#define HID_USAGE_FIDO (0xF1D0) // FIDO Alliance",
+  "url": "https://raw.githubusercontent.com/zmkfirmware/zmk/main/app/include/dt-bindings/zmk/hid_usage_pages.h"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Status: **loading**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
