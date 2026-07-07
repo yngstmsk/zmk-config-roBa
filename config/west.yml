@@ -4,10 +4,15 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
+    - name: maatthc
+      url-base: https://github.com/maatthc
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    - name: zmk-feature-appcompanion
+      remote: maatthc
+      revision: main
   self:
     path: config
