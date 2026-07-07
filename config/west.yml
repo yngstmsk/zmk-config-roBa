@@ -9,7 +9,5 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: roba-layer-status
-      path: modules/roba-layer-status
   self:
     path: config

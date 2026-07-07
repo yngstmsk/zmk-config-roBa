@@ -4770,7 +4770,43 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "roba-layer|appcompanion"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "roba-layer|appcompanion",
+  "topFiles": [
+    {
+      "matchCount": 45,
+      "uri": ".\\.specstory\\history\\2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\config\\boards\\shields\\roBa\\roBa_R.conf"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\config\\west.yml"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 47
+}
+```
+Status: **completed**
 
 
 </details>
@@ -4778,5 +4814,429 @@ Status: **loading**
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+外部モジュールをローカルモジュールに置き換えるのが最善の解決策だと考えている。
+
+Kconfig シンボルは変更せず、CMakeLists で ZMK の include パスを追加する方法を調べている。他の ZMK モジュールの実装パターンも確認している。
+
+具体的な CMake パターンを確認した。ZMK ユーザーモジュールでは `${APPLICATION_SOURCE_DIR}/../modules/zmk/app/include` を `zephyr_include_directories` に指定する方法が一般的だ。
+
+zmk-feature-appcompanion は独自の include フォルダしか指定していない。ローカルモジュール `config/modules/roba-layer-status/` を新設し、`zephyr_include_directories` で `${ZEPHYR_ZMK_MODULE_DIR}/app/include` を追加する方針を固めた。Zephyr のビルド環境でこの変数が確実に定義されるか確認が必要だ。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/ssbb/zmk-listeners/main/CMakeLists.txt"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "if ((NOT CONFIG_ZMK_SPLIT) OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)\n target_sources_ifdef(CONFIG_ZMK_LAYER_LISTENERS app PRIVATE src/layer_listeners.c)\n target_sources_ifdef(CONFIG_ZMK_KEYCODE_LISTENERS app PRIVATE src/keycode_listeners.c)\n target_sources_ifdef(CONFIG_ZMK_HID_LISTENERS app PRIVATE src/hid_listeners.c)\nendif()\n",
+  "url": "https://raw.githubusercontent.com/ssbb/zmk-listeners/main/CMakeLists.txt"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_ble_hid.c"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "/*\n * Embeds active layer number in keyboard HID report's reserved byte.\n */\n\n#include \n#include \n#include \n#include \n#include \n#include \n#include \n#include \n\nLOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);\n\nstatic uint8_t current_layer = 0;\n\nstatic int layer_status_embedded_listener(const zmk_event_t *eh) {\n const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);\n if (ev == NULL) {\n return -ENOTSUP;\n }\n\n uint8_t layer = zmk_keymap_highest_layer_active();\n\n if (layer == current_layer) {\n return 0;\n }\n current_layer = layer;\n\n struct zmk_hid_keyboard_report *report = zmk_hid_get_keyboard_report();\n report-\u003ebody._reserved = layer;\n\n zmk_endpoints_send_report(HID_USAGE_KEY);\n\n return 0;\n}\n\nZMK_LISTENER(layer_status_embedded, layer_status_embedded_listener);\nZMK_SUBSCRIPTION(layer_status_embedded, zmk_layer_state_changed);\n",
+  "url": "https://raw.githubusercontent.com/maatthc/zmk-feature-appcompanion/main/src/layer_status_ble_hid.c"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+zmk-listenersはスタンドアロンのzephyr_libraryではなく、appターゲットにソースを直接追加するパターンだ。
+
+hid_usage_pages.hだけを vendoring しても不十分だ。layer_status_ble_hid.c は zmk/keymap.h や zmk/events/layer_state_changed.h など、複数の ZMK ヘッダーも必要とする。これらすべてに ZMK アプリの include パスが必要になる。
+
+appターゲットへの直接追加は通常のモジュールパターンではない。ZMK v0.3.0ではdt-bindingsがグローバルincludeパスにあった可能性がある。スタンドアロンzephyr_libraryでzmk/*.hとdt-bindings/*を含める方法を検討している。
+
+CI環境ではZMKリポジトリが/tmp/zmk-config/zmk/に配置されるため、モジュールからzmk/app/includeへの相対パスが異なる。zephyr_link_libraries(zmk)を使う方法も検討している。ZMKドキュメントや既存モジュール例でzephyr_library_include_directoriesの正しい使い方を確認しようとしている。
+
+ZMK公式のモジュールテンプレートを確認した。別リポジトリのモジュールはzephyr_libraryでzmkライブラリをリンクする。ZMK v0.3.0では正常にビルドできたが、ZMK mainではincludeパスが変更されている。
+
+CMakeLists.txt に `${WEST_TOPDIR}/zmk/app/include` を追加すれば、Zephyr の west ビルド環境で ZMK アプリのヘッダーを解決できる。これにより hid_usage_pages.h などの欠落を修正できる。
+
+west.yml から maatthc リモートと zmk-feature-appcompanion を削除し、ローカルモジュールを config/modules/roba-layer-status/ に配置する。zephyr/module.yml などのモジュールファイル構成を整える。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/zmkfirmware/zmk/main/app/include/zmk/hid.h"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "/*\n * Copyright (c) 2020 The ZMK Contributors\n *\n * SPDX-License-Identifier: MIT\n */\n\n#pragma once\n\n#include \n\n#include \n#include \n\n#include \n#if IS_ENABLED(CONFIG_ZMK_POINTING)\n#include \n#endif // IS_ENABLED(CONFIG_ZMK_POINTING)\n\n#include \n#include \n\n#if IS_ENABLED(CONFIG_ZMK_HID_KEYBOARD_NKRO_EXTENDED_REPORT)\n#define ZMK_HID_KEYBOARD_NKRO_MAX_USAGE HID_USAGE_KEY_KEYBOARD_LANG8\n#else\n#define ZMK_HID_KEYBOARD_NKRO_MAX_USAGE HID_USAGE_KEY_KEYPAD_EQUAL\n#endif\n\n#if IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_BASIC)\n#define ZMK_HID_CONSUMER_MAX_USAGE 0xFF\n#elif IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_FULL)\n#define ZMK_HID_CONSUMER_MAX_USAGE 0xFFF\n#else\n#error \"Unknown consumer report usages configuration\"\n#endif\n\n#if IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_NKRO)\n#define ZMK_HID_KEYBOARD_MAX_USAGE ZMK_HID_KEYBOARD_NKRO_MAX_USAGE\n#elif IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_HKRO)\n#define ZMK_HID_KEYBOARD_MAX_USAGE 0xFF\n#else\n#error \"Unknown keyboard report usages configuration\"\n#endif\n\n#define ZMK_HID_MOUSE_NUM_BUTTONS 0x05\n\n// See https://www.usb.org/sites/default/files/hid1_11.pdf section 6.2.2.4 Main Items\n\n#define ZMK_HID_MAIN_VAL_DATA (0x00 \u003c\u003c 0)\n#define ZMK_HID_MAIN_VAL_CONST (0x01 \u003c\u003c 0)\n\n#define ZMK_HID_MAIN_VAL_ARRAY (0x00 \u003c\u003c 1)\n#define ZMK_HID_MAIN_VAL_VAR (0x01 \u003c\u003c 1)\n\n#define ZMK_HID_MAIN_VAL_ABS (0x00 \u003c\u003c 2)\n#define ZMK_HID_MAIN_VAL_REL (0x01 \u003c\u003c 2)\n\n#define ZMK_HID_MAIN_VAL_NO_WRAP (0x00 \u003c\u003c 3)\n#define ZMK_HID_MAIN_VAL_WRAP (0x01 \u003c\u003c 3)\n\n#define ZMK_HID_MAIN_VAL_LIN (0x00 \u003c\u003c 4)\n#define ZMK_HID_MAIN_VAL_NON_LIN (0x01 \u003c\u003c 4)\n\n#define ZMK_HID_MAIN_VAL_PREFERRED (0x00 \u003c\u003c 5)\n#define ZMK_HID_MAIN_VAL_NO_PREFERRED (0x01 \u003c\u003c 5)\n\n#define ZMK_HID_MAIN_VAL_NO_NULL (0x00 \u003c\u003c 6)\n#define ZMK_HID_MAIN_VAL_NULL (0x01 \u003c\u003c 6)\n\n#define ZMK_HID_MAIN_VAL_NON_VOL (0x00 \u003c\u003c 7)\n#define ZMK_HID_MAIN_VAL_VOL (0x01 \u003c\u003c 7)\n\n#define ZMK_HID_MAIN_VAL_BIT_FIELD (0x00 \u003c\u003c 8)\n#define ZMK_HID_MAIN_VAL_BUFFERED_BYTES (0x01 \u003c\u003c 8)\n\n#define ZMK_HID_REPORT_ID_KEYBOARD 0x01\n#define ZMK_HID_REPORT_ID_LEDS 0x01\n#define ZMK_HID_REPORT_ID_CONSUMER 0x02\n#define ZMK_HID_REPORT_ID_MOUSE 0x03\n\n#ifndef HID_ITEM_TAG_PUSH\n#define HID_ITEM_TAG_PUSH 0xA\n#endif\n\n#ifndef HID_ITEM_TAG_POP\n#define HID_ITEM_TAG_POP 0xB\n#endif\n\n#define HID_PUSH HID_ITEM(HID_ITEM_TAG_PUSH, HID_ITEM_TYPE_GLOBAL, 0)\n\n#define HID_POP HID_ITEM(HID_ITEM_TAG_POP, HID_ITEM_TYPE_GLOBAL, 0)\n\n#ifndef HID_PHYSICAL_MIN8\n#define HID_PHYSICAL_MIN8(a) HID_ITEM(HID_ITEM_TAG_PHYSICAL_MIN, HID_ITEM_TYPE_GLOBAL, 1), a\n#endif\n\n#ifndef HID_PHYSICAL_MAX8\n#define HID_PHYSICAL_MAX8(a) HID_ITEM(HID_ITEM_TAG_PHYSICAL_MAX, HID_ITEM_TYPE_GLOBAL, 1), a\n#endif\n\n#define HID_USAGE16(a, b) HID_ITEM(HID_ITEM_TAG_USAGE, HID_ITEM_TYPE_LOCAL, 2), a, b\n\n#define HID_USAGE16_SINGLE(a) HID_USAGE16((a \u0026 0xFF), ((a \u003e\u003e 8) \u0026 0xFF))\n\nstatic const uint8_t zmk_hid_report_desc[] = {\n HID_USAGE_PAGE(HID_USAGE_GEN_DESKTOP),\n HID_USAGE(HID_USAGE_GD_KEYBOARD),\n HID_COLLECTION(HID_COLLECTION_APPLICATION),\n HID_REPORT_ID(ZMK_HID_REPORT_ID_KEYBOARD),\n HID_USAGE_PAGE(HID_USAGE_KEY),\n HID_USAGE_MIN8(HID_USAGE_KEY_KEYBOARD_LEFTCONTROL),\n HID_USAGE_MAX8(HID_USAGE_KEY_KEYBOARD_RIGHT_GUI),\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX8(0x01),\n\n HID_REPORT_SIZE(0x01),\n HID_REPORT_COUNT(0x08),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n\n HID_USAGE_PAGE(HID_USAGE_KEY),\n HID_REPORT_SIZE(0x08),\n HID_REPORT_COUNT(0x01),\n HID_INPUT(ZMK_HID_MAIN_VAL_CONST | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n\n#if IS_ENABLED(CONFIG_ZMK_HID_INDICATORS)\n\n HID_USAGE_PAGE(HID_USAGE_LED),\n HID_USAGE_MIN8(HID_USAGE_LED_NUM_LOCK),\n HID_USAGE_MAX8(HID_USAGE_LED_KANA),\n HID_REPORT_SIZE(0x01),\n HID_REPORT_COUNT(0x05),\n HID_OUTPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n\n HID_USAGE_PAGE(HID_USAGE_LED),\n HID_REPORT_SIZE(0x03),\n HID_REPORT_COUNT(0x01),\n HID_OUTPUT(ZMK_HID_MAIN_VAL_CONST | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n\n#endif // IS_ENABLED(CONFIG_ZMK_HID_INDICATORS)\n\n HID_USAGE_PAGE(HID_USAGE_KEY),\n\n#if IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_NKRO)\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX8(0x01),\n HID_USAGE_MIN8(0x00),\n HID_USAGE_MAX8(ZMK_HID_KEYBOARD_NKRO_MAX_USAGE),\n HID_REPORT_SIZE(0x01),\n HID_REPORT_COUNT(ZMK_HID_KEYBOARD_NKRO_MAX_USAGE + 1),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n#elif IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_HKRO)\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX16(0xFF, 0x00),\n HID_USAGE_MIN8(0x00),\n HID_USAGE_MAX8(0xFF),\n HID_REPORT_SIZE(0x08),\n HID_REPORT_COUNT(CONFIG_ZMK_HID_KEYBOARD_REPORT_SIZE),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_ARRAY | ZMK_HID_MAIN_VAL_ABS),\n#else\n#error \"A proper HID report type must be selected\"\n#endif\n\n HID_END_COLLECTION,\n HID_USAGE_PAGE(HID_USAGE_CONSUMER),\n HID_USAGE(HID_USAGE_CONSUMER_CONSUMER_CONTROL),\n HID_COLLECTION(HID_COLLECTION_APPLICATION),\n HID_REPORT_ID(ZMK_HID_REPORT_ID_CONSUMER),\n HID_USAGE_PAGE(HID_USAGE_CONSUMER),\n\n#if IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_BASIC)\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX16(0xFF, 0x00),\n HID_USAGE_MIN8(0x00),\n HID_USAGE_MAX8(0xFF),\n HID_REPORT_SIZE(0x08),\n#elif IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_FULL)\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX16(0xFF, 0x0F),\n HID_USAGE_MIN8(0x00),\n HID_USAGE_MAX16(0xFF, 0x0F),\n HID_REPORT_SIZE(0x10),\n#else\n#error \"A proper consumer HID report usage range must be selected\"\n#endif\n HID_REPORT_COUNT(CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_ARRAY | ZMK_HID_MAIN_VAL_ABS),\n HID_END_COLLECTION,\n\n#if IS_ENABLED(CONFIG_ZMK_POINTING)\n HID_USAGE_PAGE(HID_USAGE_GD),\n HID_USAGE(HID_USAGE_GD_MOUSE),\n HID_COLLECTION(HID_COLLECTION_APPLICATION),\n HID_REPORT_ID(ZMK_HID_REPORT_ID_MOUSE),\n HID_USAGE(HID_USAGE_GD_POINTER),\n HID_COLLECTION(HID_COLLECTION_PHYSICAL),\n HID_USAGE_PAGE(HID_USAGE_BUTTON),\n HID_USAGE_MIN8(0x1),\n HID_USAGE_MAX8(ZMK_HID_MOUSE_NUM_BUTTONS),\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX8(0x01),\n HID_REPORT_SIZE(0x01),\n HID_REPORT_COUNT(0x5),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n // Constant padding for the last 3 bits.\n HID_REPORT_SIZE(0x03),\n HID_REPORT_COUNT(0x01),\n HID_INPUT(ZMK_HID_MAIN_VAL_CONST | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n // Some OSes ignore pointer devices without X/Y data.\n HID_USAGE_PAGE(HID_USAGE_GEN_DESKTOP),\n HID_USAGE(HID_USAGE_GD_X),\n HID_USAGE(HID_USAGE_GD_Y),\n HID_LOGICAL_MIN16(0x00, 0x80),\n HID_LOGICAL_MAX16(0xFF, 0x7F),\n HID_REPORT_SIZE(0x10),\n HID_REPORT_COUNT(0x02),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_REL),\n HID_COLLECTION(HID_COLLECTION_LOGICAL),\n#if IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n HID_USAGE(HID_USAGE_GD_RESOLUTION_MULTIPLIER),\n HID_LOGICAL_MIN8(0x00),\n HID_LOGICAL_MAX8(0x0F),\n HID_PHYSICAL_MIN8(0x01),\n HID_PHYSICAL_MAX8(0x10),\n HID_REPORT_SIZE(0x04),\n HID_REPORT_COUNT(0x01),\n HID_PUSH,\n HID_FEATURE(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n HID_USAGE(HID_USAGE_GD_WHEEL),\n HID_LOGICAL_MIN16(0x00, 0x80),\n HID_LOGICAL_MAX16(0xFF, 0x7F),\n HID_PHYSICAL_MIN8(0x00),\n HID_PHYSICAL_MAX8(0x00),\n HID_REPORT_SIZE(0x10),\n HID_REPORT_COUNT(0x01),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_REL),\n HID_END_COLLECTION,\n HID_COLLECTION(HID_COLLECTION_LOGICAL),\n#if IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n HID_USAGE(HID_USAGE_GD_RESOLUTION_MULTIPLIER),\n HID_POP,\n HID_FEATURE(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_ABS),\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n HID_USAGE_PAGE(HID_USAGE_CONSUMER),\n HID_USAGE16_SINGLE(HID_USAGE_CONSUMER_AC_PAN),\n HID_LOGICAL_MIN16(0x00, 0x80),\n HID_LOGICAL_MAX16(0xFF, 0x7F),\n HID_PHYSICAL_MIN8(0x00),\n HID_PHYSICAL_MAX8(0x00),\n HID_REPORT_SIZE(0x10),\n HID_REPORT_COUNT(0x01),\n HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_REL),\n HID_END_COLLECTION,\n HID_END_COLLECTION,\n HID_END_COLLECTION,\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING)\n};\n\n#if IS_ENABLED(CONFIG_ZMK_USB_BOOT)\n\n#define HID_ERROR_ROLLOVER 0x1\n#define HID_BOOT_KEY_LEN 6\n\n#if IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_HKRO) \u0026\u0026 \\\n CONFIG_ZMK_HID_KEYBOARD_REPORT_SIZE == HID_BOOT_KEY_LEN\ntypedef struct zmk_hid_keyboard_report_body zmk_hid_boot_report_t;\n#else\nstruct zmk_hid_boot_report {\n zmk_mod_flags_t modifiers;\n uint8_t _reserved;\n uint8_t keys[HID_BOOT_KEY_LEN];\n} __packed;\n\ntypedef struct zmk_hid_boot_report zmk_hid_boot_report_t;\n#endif\n#endif\n\nstruct zmk_hid_keyboard_report_body {\n zmk_mod_flags_t modifiers;\n uint8_t _reserved;\n#if IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_NKRO)\n uint8_t keys[DIV_ROUND_UP(ZMK_HID_KEYBOARD_NKRO_MAX_USAGE + 1, 8)];\n#elif IS_ENABLED(CONFIG_ZMK_HID_REPORT_TYPE_HKRO)\n uint8_t keys[CONFIG_ZMK_HID_KEYBOARD_REPORT_SIZE];\n#endif\n} __packed;\n\nstruct zmk_hid_keyboard_report {\n uint8_t report_id;\n struct zmk_hid_keyboard_report_body body;\n} __packed;\n\nstruct zmk_hid_led_report_body {\n uint8_t leds;\n} __packed;\n\nstruct zmk_hid_led_report {\n uint8_t report_id;\n struct zmk_hid_led_report_body body;\n} __packed;\n\nstruct zmk_hid_consumer_report_body {\n#if IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_BASIC)\n uint8_t keys[CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE];\n#elif IS_ENABLED(CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_FULL)\n uint16_t keys[CONFIG_ZMK_HID_CONSUMER_REPORT_SIZE];\n#endif\n} __packed;\n\nstruct zmk_hid_consumer_report {\n uint8_t report_id;\n struct zmk_hid_consumer_report_body body;\n} __packed;\n\n#if IS_ENABLED(CONFIG_ZMK_POINTING)\nstruct zmk_hid_mouse_report_body {\n zmk_mouse_button_flags_t buttons;\n int16_t d_x;\n int16_t d_y;\n int16_t d_scroll_y;\n int16_t d_scroll_x;\n} __packed;\n\nstruct zmk_hid_mouse_report {\n uint8_t report_id;\n struct zmk_hid_mouse_report_body body;\n} __packed;\n\n#if IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n\nstruct zmk_hid_mouse_resolution_feature_report_body {\n uint8_t wheel_res : 4;\n uint8_t hwheel_res : 4;\n} __packed;\n\nstruct zmk_hid_mouse_resolution_feature_report {\n uint8_t report_id;\n struct zmk_hid_mouse_resolution_feature_report_body body;\n} __packed;\n\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING_SMOOTH_SCROLLING)\n\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING)\n\nzmk_mod_flags_t zmk_hid_get_explicit_mods(void);\nint zmk_hid_register_mod(zmk_mod_t modifier);\nint zmk_hid_unregister_mod(zmk_mod_t modifier);\nbool zmk_hid_mod_is_pressed(zmk_mod_t modifier);\n\nint zmk_hid_register_mods(zmk_mod_flags_t explicit_modifiers);\nint zmk_hid_unregister_mods(zmk_mod_flags_t explicit_modifiers);\nint zmk_hid_implicit_modifiers_press(zmk_mod_flags_t implicit_modifiers);\nint zmk_hid_implicit_modifiers_release(void);\nint zmk_hid_masked_modifiers_set(zmk_mod_flags_t masked_modifiers);\nint zmk_hid_masked_modifiers_clear(void);\n\nint zmk_hid_keyboard_press(zmk_key_t key);\nint zmk_hid_keyboard_release(zmk_key_t key);\nvoid zmk_hid_keyboard_clear(void);\nbool zmk_hid_keyboard_is_pressed(zmk_key_t key);\n\nint zmk_hid_consumer_press(zmk_key_t key);\nint zmk_hid_consumer_release(zmk_key_t key);\nvoid zmk_hid_consumer_clear(void);\nbool zmk_hid_consumer_is_pressed(zmk_key_t key);\n\nint zmk_hid_press(uint32_t usage);\nint zmk_hid_release(uint32_t usage);\nbool zmk_hid_is_pressed(uint32_t usage);\n\n#if IS_ENABLED(CONFIG_ZMK_POINTING)\nint zmk_hid_mouse_button_press(zmk_mouse_button_t button);\nint zmk_hid_mouse_button_release(zmk_mouse_button_t button);\nint zmk_hid_mouse_buttons_press(zmk_mouse_button_flags_t buttons);\nint zmk_hid_mouse_buttons_release(zmk_mouse_button_flags_t buttons);\nvoid zmk_hid_mouse_movement_set(int16_t x, int16_t y);\nvoid zmk_hid_mouse_scroll_set(int16_t x, int16_t y);\nvoid zmk_hid_mouse_movement_update(int16_t x, int16_t y);\nvoid zmk_hid_mouse_scroll_update(int16_t x, int16_t y);\nvoid zmk_hid_mouse_clear(void);\n\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING)\n\nstruct zmk_hid_keyboard_report *zmk_hid_get_keyboard_report(void);\nstruct zmk_hid_consumer_report *zmk_hid_get_consumer_report(void);\n\n#if IS_ENABLED(CONFIG_ZMK_USB_BOOT)\nzmk_hid_boot_report_t *zmk_hid_get_boot_report();\n#endif\n\n#if IS_ENABLED(CONFIG_ZMK_POINTING)\nstruct zmk_hid_mouse_report *zmk_hid_get_mouse_report();\n#endif // IS_ENABLED(CONFIG_ZMK_POINTING)\n",
+  "url": "https://raw.githubusercontent.com/zmkfirmware/zmk/main/app/include/zmk/hid.h"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "_reserved|zmk_hid_get_keyboard_report"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "_reserved|zmk_hid_get_keyboard_report",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory\\history\\2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+ZMK main ブランチで `_reserved` と `zmk_hid_get_keyboard_report` が依然として存在することを確認した。
+
+ローカルモジュールを config/modules/roba-layer-status/ に作成し、west.yml を maatthc の外部モジュールからローカル版に切り替える方針を立てた。CMakeLists では WEST_TOPDIR を使う予定だが、CI 環境でのワークスペース構成（config と zmk が隣接するかなど）を確認している。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/zzeneg/zmk-raw-hid/main/CMakeLists.txt"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "if (CONFIG_RAW_HID)\n zephyr_library()\n\n zephyr_library_sources(src/events.c)\n zephyr_library_sources(src/usb_hid.c)\n\n if (CONFIG_ZMK_BLE)\n zephyr_library_sources(src/hog.c)\n endif()\n\n zephyr_include_directories(include)\n zephyr_include_directories(${APPLICATION_SOURCE_DIR}/include)\nendif()\n",
+  "url": "https://raw.githubusercontent.com/zzeneg/zmk-raw-hid/main/CMakeLists.txt"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+zmk-raw-hid は zmk アプリのディレクトリを含む APPLICATION_SOURCE_DIR を使っている。ビルド時にそのディレクトリが include パスに含まれていない可能性がある。
+
+Zephyr の標準変数 `APPLICATION_SOURCE_DIR` を使って、zmk/app の include ディレクトリを追加する方針に切り替えた。west.yml とローカルモジュールを更新する。
+
+maatthc リモートを不要なら削除する。roBa_R.conf のコメントもローカルモジュールを参照するよう更新する。
+
+ファイル構成を以下に整理した。
+- config/modules/roba-layer-status/
+  - zephyr/module.yml
+  - Kconfig
+  - CMakeLists.txt
+  - src/layer_status_ble_hid.c
+
+Kconfig は BLE 限定のシンプル版にした。module.yml は CMake ビルド設定を定義する。
+
+module.yml に `kconfig: Kconfig` を追加した。
+
+layer_status_ble_hid.c は元の実装から必要なヘッダーをそのまま include する。
+
+west.yml から maatthc リモートと zmk-feature-appcompanion を削除し、roba-layer-status をローカルパスで追加する。
+
+west.yml の path は manifest リポジトリを基準に解決される。config/ 配下の west.yml から modules/roba-layer-status への相対パスが正しく機能するか確認している。</details></think>
+
+_**Agent (default)**_
+
+外部モジュールは ZMK `main` と非互換のため、リポジトリ内に修正済みローカルモジュールを作成して差し替えます。
+
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\zephyr\module.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\Kconfig</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\CMakeLists.txt</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\src\layer_status_ble_hid.c</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\west.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\boards\shields\roBa\roBa_R.conf</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+## 原因
+
+[maatthc/zmk-feature-appcompanion](https://github.com/maatthc/zmk-feature-appcompanion) は ZMK `v0.3.0` 向けで、ZMK `main` のヘッダパス（`dt-bindings/zmk/hid_usage_pages.h`）を CMake で参照できていませんでした。
+
+## 対応内容
+
+外部モジュールをやめ、**リポジトリ内のローカルモジュール**に置き換えました。
+
+| ファイル | 内容 |
+|----------|------|
+| [`config/modules/roba-layer-status/`](config/modules/roba-layer-status/) | レイヤー通知用モジュール（新規） |
+| [`config/west.yml`](config/west.yml) | `zmk-feature-appcompanion` を削除 → `roba-layer-status`（ローカル）に変更 |
+| [`config/boards/shields/roBa/roBa_R.conf`](config/boards/shields/roBa/roBa_R.conf) | `CONFIG_ZMK_LAYER_STATUS_BLE_HID=y` はそのまま（コメントのみ更新） |
+
+**CMake の修正点:** `zephyr_include_directories(${APPLICATION_SOURCE_DIR}/include)` で ZMK `main` のヘッダを正しく参照します。
+
+**動作:** 変更前と同じく、BLE キーボード HID レポートの **byte1** に最高レイヤー番号を入れます。
+
+---
+
+## 次のステップ
+
+1. 変更を **commit & push**
+2. GitHub Actions のビルド成功を確認
+3. **`roBa_right.uf2` のみ** 右側にフラッシュ
+
+ビルドがまた失敗したら、Actions のログを共有してください。
+
+---
+
+_**User**_
+
+今度は３回ともエラー出てるぞ
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa" && gh run list --limit 5</summary>
+
+```bash
+cd "C:\dev\zmk-config-roBa" && gh run list --limit 5
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+
+No results found
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
 
 </details></tool-use>

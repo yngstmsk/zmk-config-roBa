@@ -2,3 +2,5 @@ name: roBa
 build:
   settings:
     board_root: config
+  cmake: config/modules/roba-layer-status
+  kconfig: config/modules/roba-layer-status/Kconfig

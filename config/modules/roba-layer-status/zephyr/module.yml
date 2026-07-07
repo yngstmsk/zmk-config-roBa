@@ -1,4 +1,0 @@
-name: roba-layer-status
-build:
-  cmake: .
-  kconfig: Kconfig
