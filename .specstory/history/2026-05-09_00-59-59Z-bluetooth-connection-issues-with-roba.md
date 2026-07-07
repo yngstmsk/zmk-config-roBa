@@ -5199,11 +5199,33 @@ _**User**_
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+3回すべてのビルドが失敗した。</details></think>
+
+_**Agent (default)**_
+
+3つのビルド失敗の原因を、CIログと変更内容から調査します。
+
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
 <details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa" && gh run list --limit 5</summary>
 
 ```bash
 cd "C:\dev\zmk-config-roBa" && gh run list --limit 5
+```
+
+```
+�����ꏊ C:\Users\yngst\AppData\Local\Temp\ps-script-78422191-dbb4-48db-aa3d-9edc3562aad8.ps1:122 ����:29
++ cd "C:\dev\zmk-config-roBa" &amp;&amp; gh run list --limit 5
++                             ~~
+�g�[�N�� '&amp;&amp;' �́A���̃o�[�W�����ł͗L���ȃX�e�[�g�����g��؂�ł͂���܂���B
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 
+
 ```
 </details>
 </tool-use>
@@ -5216,7 +5238,7 @@ cd "C:\dev\zmk-config-roBa" && gh run list --limit 5
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\west.yml</summary>
 
 </details>
 </tool-use>
@@ -5230,13 +5252,1112 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **4** results in **1** directory</summary>
 
-No results found
+Directory: **c:\dev\zmk-config-roBa\config\modules\roba-layer-status** (4 files)
+
+| File |
+|------|
+| `../config\modules\roba-layer-status\CMakeLists.txt` |
+| `../config\modules\roba-layer-status\src\layer_status_ble_hid.c` |
+| `../config\modules\roba-layer-status\zephyr\module.yml` |
+| `../config\modules\roba-layer-status\Kconfig` |
+
 </details>
 </tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa"; gh run list --limit 5</summary>
+
+```bash
+cd "C:\dev\zmk-config-roBa"; gh run list --limit 5
+```
+
+```
+completed	action_required	Add fast_mouse input processor to trackball listener	.github/workflows/build.yml	patch-1	pull_request	27804223962	0s	2026-06-19T03:51:25Z
+completed	success	scroll-snap	.github/workflows/build.yml	scroll-snap	push	24093746565	2m35s	2026-04-07T16:56:44Z
+completed	success	CONFIG_PMW3610_ORIENTATION_180=n	.github/workflows/build.yml	forCOROPIT	push	23910009472	2m5s	2026-04-02T16:09:26Z
+completed	success	v0.3-branch	.github/workflows/build.yml	forCOROPIT	push	23907295401	1m57s	2026-04-02T15:07:34Z
+completed	success	build.ymlの更新	.github/workflows/build.yml	main	push	23657733078	3m38s	2026-03-27T16:54:42Z
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa"; git remote -v; git log -3 --oneline</summary>
+
+```bash
+cd "C:\dev\zmk-config-roBa"; git remote -v; git log -3 --oneline
+```
+
+```
+origin	https://github.com/myanakom/zmk-config-roBa.git (fetch)
+origin	https://github.com/myanakom/zmk-config-roBa.git (push)
+upstream	https://github.com/kumamuk-git/zmk-config-roBa.git (fetch)
+upstream	https://github.com/kumamuk-git/zmk-config-roBa.git (push)
+yngstmsk	https://github.com/yngstmsk/zmk-config-roBa.git (fetch)
+yngstmsk	https://github.com/yngstmsk/zmk-config-roBa.git (push)
+138d9d5 Update statistics and configuration for roBa project: incremented user and agent message counts, adjusted markdown size, and modified &#96;west.yml&#96; to include new module &#96;roba-layer-status&#96;. Updated &#96;roBa_R.conf&#96; to enable BLE layer status notifications.
+03d6708 windowsアプリ計画１
+bbb911b トラックボールが遅くなる問題解決byOpus4.7
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa"; gh run list --repo myanakom/zmk-config-roBa --limit 10</summary>
+
+```bash
+cd "C:\dev\zmk-config-roBa"; gh run list --repo myanakom/zmk-config-roBa --limit 10
+```
+
+```
+completed	success	設定ファイルに新しいBashおよびWebFetch権限を追加	.github/workflows/build.yml	main	push	22139672959	2m4s	2026-02-18T12:26:28Z
+completed	success	設定ファイルを更新し、roBaキーボードの構成を整理しました。新しいWebFetch権限を追加し、roBa_RおよびroBa_Lの設定を統…	.github/workflows/build.yml	main	push	22138948572	1m56s	2026-02-18T12:03:14Z
+completed	success	roBaのキーボード名を統一し、不要な設定を削除	.github/workflows/build.yml	main	push	22138179072	2m6s	2026-02-18T11:37:56Z
+completed	success	Remove unused configurations and update KSCAN label in roBa configura…	.github/workflows/build.yml	main	push	22137652453	2m52s	2026-02-18T11:20:41Z
+completed	success	SpecStoryのドキュメントを更新し、Windows Bluetooth接続のトラブルシューティングガイドを追加	.github/workflows/build.yml	main	push	22135762661	1m55s	2026-02-18T10:21:20Z
+completed	success	Add BLE experimental connection and disable Studio BLE transport	.github/workflows/build.yml	main	push	22097643322	2m0s	2026-02-17T12:00:44Z
+completed	success	削除: roBa_L-xiao_ble-zmk.uf2, roBa_R-xiao_ble-zmk.uf2, settings_reset-…	.github/workflows/build.yml	main	push	21798236011	2m2s	2026-02-08T12:34:23Z
+completed	success	Invert trackball vertical direction	.github/workflows/build.yml	main	push	21780302052	2m10s	2026-02-07T13:11:26Z
+completed	success	Refactor code structure for improved readability and maintainability	.github/workflows/build.yml	main	push	21779990844	2m1s	2026-02-07T12:19:11Z
+completed	success	Fix &lt; &gt; output for JP layout	.github/workflows/build.yml	main	push	21779984104	2m10s	2026-02-07T12:18:39Z
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "C:\dev\zmk-config-roBa"; git status; git branch -vv</summary>
+
+```bash
+cd "C:\dev\zmk-config-roBa"; git status; git branch -vv
+```
+
+```
+On branch main
+Your branch is up to date with 'yngstmsk/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   .specstory/history/2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md
+	modified:   .specstory/statistics.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+* main 138d9d5 [yngstmsk/main] Update statistics and configuration for roBa project: incremented user and agent message counts, adjusted markdown size, and modified &#96;west.yml&#96; to include new module &#96;roba-layer-status&#96;. Updated &#96;roBa_R.conf&#96; to enable BLE layer status notifications.
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: gh run list --repo yngstmsk/zmk-config-roBa --limit 5</summary>
+
+```bash
+gh run list --repo yngstmsk/zmk-config-roBa --limit 5
+```
+
+```
+completed	failure	Update statistics and configuration for roBa project: incremented use…	.github/workflows/build.yml	main	push	28864139901	1m15s	2026-07-07T11:54:23Z
+completed	failure	windowsアプリ計画１	.github/workflows/build.yml	main	push	28863342793	4m39s	2026-07-07T11:39:56Z
+completed	success	トラックボールが遅くなる問題解決byOpus4.7	.github/workflows/build.yml	main	push	24626850706	5m50s	2026-05-07T10:23:35Z
+completed	success	Merge branch 'main' of https://github.com/yngstmsk/zmk-config-roBa	.github/workflows/build.yml	main	push	23976763485	5m19s	2026-04-04T10:08:55Z
+completed	success	update	.github/workflows/build.yml	main	push	22794232808	2m9s	2026-03-07T06:55:09Z
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-Object -Last 80</summary>
+
+```bash
+gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-Object -Last 80
+```
+
+```
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7495333Z ##[error]Process completed with exit code 1.
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7532653Z ##[group]Run if [ -f "/tmp/tmp.kYDY64mNfK/zephyr/.config" ]
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7533127Z [36;1mif [ -f "/tmp/tmp.kYDY64mNfK/zephyr/.config" ][0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7533456Z [36;1mthen[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7533771Z [36;1m  grep -v -e "^#" -e "^$" "/tmp/tmp.kYDY64mNfK/zephyr/.config" | sort[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7534139Z [36;1melse[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7534346Z [36;1m  echo "No Kconfig output"[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7534599Z [36;1mfi[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7534886Z shell: sh -e {0}
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7535084Z env:
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7535300Z   build_dir: /tmp/tmp.kYDY64mNfK
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7535572Z   base_dir: /tmp/zmk-config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7535820Z   zephyr_version: 4.1.0
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7536040Z   extra_west_args: 
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7536443Z   extra_cmake_args: -DSHIELD="roBa_R" -DZMK_EXTRA_MODULES='/__w/zmk-config-roBa/zmk-config-roBa'
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7536920Z   display_name: roBa_R - xiao_ble//zmk
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7537246Z   artifact_name: roBa_right
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7537482Z ##[endgroup]
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8198965Z No Kconfig output
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8264051Z ##[group]Run if [ -f "/tmp/tmp.kYDY64mNfK/zephyr/zephyr.dts" ]
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8264538Z [36;1mif [ -f "/tmp/tmp.kYDY64mNfK/zephyr/zephyr.dts" ][0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8264872Z [36;1mthen[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8265125Z [36;1m  cat "/tmp/tmp.kYDY64mNfK/zephyr/zephyr.dts"[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8265523Z [36;1melif [ -f "/tmp/tmp.kYDY64mNfK/zephyr/zephyr.dts.pre" ][0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8265867Z [36;1mthen[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8266163Z [36;1m  cat -s "/tmp/tmp.kYDY64mNfK/zephyr/zephyr.dts.pre"[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8266489Z [36;1melse[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8266702Z [36;1m  echo "No Devicetree output"[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8266962Z [36;1mfi[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8267253Z shell: sh -e {0}
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8267464Z env:
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8267665Z   build_dir: /tmp/tmp.kYDY64mNfK
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8267922Z   base_dir: /tmp/zmk-config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8268161Z   zephyr_version: 4.1.0
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8268382Z   extra_west_args: 
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8268821Z   extra_cmake_args: -DSHIELD="roBa_R" -DZMK_EXTRA_MODULES='/__w/zmk-config-roBa/zmk-config-roBa'
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8269301Z   display_name: roBa_R - xiao_ble//zmk
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8269572Z   artifact_name: roBa_right
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8269803Z ##[endgroup]
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.8829995Z No Devicetree output
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.9063371Z Post job cleanup.
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.9070390Z ##[command]/usr/bin/docker exec  bcfba502b8f3242dc8415245a46dd7fb17dd587139d149614c7d4ed1643871fa sh -c "cat /etc/*release | grep ^ID"
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1040522Z [command]/usr/bin/git version
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1100357Z git version 2.43.0
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1163970Z Temporarily overriding HOME='/__w/_temp/72766872-d848-45db-a983-ddf2efb42590' before making global git config changes
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1167003Z Adding repository directory to the temporary git global config as a safe directory
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1179488Z [command]/usr/bin/git config --global --add safe.directory /__w/zmk-config-roBa/zmk-config-roBa
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1211500Z Removing SSH command configuration
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1221360Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1279145Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' &amp;&amp; git config --local --unset-all 'core.sshCommand' || :"
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1642917Z Removing HTTP extra header
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1646372Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1706211Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' &amp;&amp; git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1976544Z Removing includeIf entries pointing to credentials config files
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.1977374Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2010066Z includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2011793Z includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git/worktrees/*.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2012929Z includeif.gitdir:/github/workspace/.git.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2013869Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2023718Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2054987Z /__w/_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2070120Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git.path /__w/_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2116590Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git/worktrees/*.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2143773Z /__w/_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2159128Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/zmk-config-roBa/zmk-config-roBa/.git/worktrees/*.path /__w/_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2218867Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2248916Z /github/runner_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2270655Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2313390Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2339112Z /github/runner_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2352490Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2401915Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2644792Z Removing credentials config '/__w/_temp/git-credentials-c67f2f6f-f377-404c-9a4b-a0765b27aa62.config'
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2793360Z Stop and remove container: ca62cdfc0ca149818e3b6b3c87dd9f92_zmkfirmwarezmkbuildarmstable_eb4c40
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:25.2798073Z ##[command]/usr/bin/docker rm --force bcfba502b8f3242dc8415245a46dd7fb17dd587139d149614c7d4ed1643871fa
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:30.8685087Z bcfba502b8f3242dc8415245a46dd7fb17dd587139d149614c7d4ed1643871fa
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:30.8716794Z Remove container network: github_network_0cc14fc5b0e24f418b36ebb34cff73a9
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:30.8721035Z ##[command]/usr/bin/docker network rm github_network_0cc14fc5b0e24f418b36ebb34cff73a9
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:30.9788068Z github_network_0cc14fc5b0e24f418b36ebb34cff73a9
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:30.9859028Z Cleaning up orphan processes
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-String -Pattern "error|Error|fatal|FATAL|failed" | Select-Object -First 40</summary>
+
+```bash
+gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-String -Pattern "error|Error|fatal|FATAL|failed" | Select-Object -First 40
+```
+
+```
+
+build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.0025
+561Z FATAL ERROR: Malformed manifest file: /tmp/zmk-config/config/west.yml 
+build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.0223
+849Z ##[error]Process completed with exit code 1.
+build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.0319
+011Z [36;1m    echo "::error file=build/zephyr/.config,title=Missing ZMK Compat::The selected board is not set up for 
+ZMK and there is a ZMK variant available. See https://zmk.dev/blog/2025/12/09/zephyr-4-1#zmk-board-variant."[0m
+build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.2429
+436Z ##[error]Process completed with exit code 1.
+build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8044617Z FATAL ERROR: Malformed manif
+est file: /tmp/zmk-config/config/west.yml 
+build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8264783Z ##[error]Process completed w
+ith exit code 1.
+build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8363299Z [36;1m    echo "::error fil
+e=build/zephyr/.config,title=Missing ZMK Compat::The selected board is not set up for ZMK and there is a ZMK variant av
+ailable. See https://zmk.dev/blog/2025/12/09/zephyr-4-1#zmk-board-variant."[0m
+build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:29.0507210Z ##[error]Process completed w
+ith exit code 1.
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5044100Z FATAL ERROR: Malformed mani
+fest file: /tmp/zmk-config/config/west.yml 
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5294864Z ##[error]Process completed 
+with exit code 1.
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5389477Z [36;1m    echo "::error fi
+le=build/zephyr/.config,title=Missing ZMK Compat::The selected board is not set up for ZMK and there is a ZMK variant a
+vailable. See https://zmk.dev/blog/2025/12/09/zephyr-4-1#zmk-board-variant."[0m
+build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.7495333Z ##[error]Process completed 
+with exit code 1.
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+原因が判明した。/tmp/zmk-config/config/west.yml に不正なマニフェストファイルがある。
+
+west.yml のローカルプロジェクトパス構文を確認している。ZMK ドキュメントのマニフェストスキーマと比較し、正しい形式を探している。
+
+ローカルモジュールのパス構文を検討している。west.yml に url を指定せず path のみで記述できるか、それとも url が必要か確認している。Zephyr west マニフェストのドキュメントも参照している。
+
+west.yml と同じリポジトリ内のローカルプロジェクトは path のみで記述できる。ただし west.yml から相対パスを解決する基準が manifest ファイルではなくワークスペースルート（.west がある場所）になる可能性がある。self.path が config の場合、このパス解決の違いがエラーの原因になっているかもしれない。
+
+west.yml は config/west.yml にある。self.path が config でも、ローカルプロジェクトの path は west マニフェストリポジトリのルート基準で解決される。config/ 配下からの相対パスでは解決できない可能性がある。west ドキュメントを詳しく確認する。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-String -Pattern "west.yml|Malformed|manifest" -Context 0,2 | Select-Object -First 20</summary>
+
+```bash
+gh run view 28864139901 --repo yngstmsk/zmk-config-roBa --log-failed 2>&1 | Select-String -Pattern "west.yml|Malformed|manifest" -Context 0,2 | Select-Object -First 20
+```
+
+```
+
+&gt; build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:18.78
+73977Z === Initializing from existing manifest repository config
+  build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:18.78
+75188Z --- Creating /tmp/zmk-config/.west and local configuration file
+  build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:18.78
+83013Z === Initialized. Now run "west update" inside /tmp/zmk-config.
+&gt; build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.00
+25561Z FATAL ERROR: Malformed manifest file: /tmp/zmk-config/config/west.yml 
+&gt; build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.00
+26619Z   Schema file: /usr/local/lib/python3.12/dist-packages/west/manifest-schema.yml
+  build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.00
+27582Z   Hint: project roba-layer-status has no remote or url and no default remote is set
+  build / Build (xiao_ble//zmk, settings_reset, settings_reset, -DCONFIG_ZMK_USB=n)	UNKNOWN STEP	2026-07-07T11:55:19.02
+23849Z ##[error]Process completed with exit code 1.
+&gt; build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.5727574Z === Initializing from exis
+ting manifest repository config
+  build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.5728615Z --- Creating /tmp/zmk-conf
+ig/.west and local configuration file
+  build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.5738968Z === Initialized. Now run "
+west update" inside /tmp/zmk-config.
+&gt; build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8044617Z FATAL ERROR: Malformed man
+ifest file: /tmp/zmk-config/config/west.yml 
+&gt; build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8045567Z   Schema file: /usr/local/
+lib/python3.12/dist-packages/west/manifest-schema.yml
+  build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8046601Z   Hint: project roba-layer
+-status has no remote or url and no default remote is set
+  build / Build (xiao_ble//zmk, roBa_L, roBa_left)	UNKNOWN STEP	2026-07-07T11:55:28.8264783Z ##[error]Process completed
+ with exit code 1.
+&gt; build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.2729174Z === Initializing from exi
+sting manifest repository config
+  build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.2731699Z --- Creating /tmp/zmk-con
+fig/.west and local configuration file
+  build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.2739330Z === Initialized. Now run 
+"west update" inside /tmp/zmk-config.
+&gt; build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5044100Z FATAL ERROR: Malformed ma
+nifest file: /tmp/zmk-config/config/west.yml 
+&gt; build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5045082Z   Schema file: /usr/local
+/lib/python3.12/dist-packages/west/manifest-schema.yml
+  build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5046184Z   Hint: project roba-laye
+r-status has no remote or url and no default remote is set
+  build / Build (xiao_ble//zmk, roBa_R, roBa_right)	UNKNOWN STEP	2026-07-07T11:55:24.5294864Z ##[error]Process complete
+d with exit code 1.
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://docs.zephyrproject.org/latest/develop/west/manifest.html"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "West Manifests — Zephyr Project Documentation\n\n# West Manifests\n\nThis page contains detailed information about west’s multiple repository model, manifest files, and the&#96;west manifest&#96; command. For API documentation on the&#96;west.manifest&#96; module, see west.manifest. For a more general introduction and command overview, see Basics.\n\n## Multiple Repository Model\n\nWest’s view of the repositories in a west workspace, and their history, looks like the following figure (though some parts of this example are specific to upstream Zephyr’s use of west):\n\nWest multi-repo history\n\nThe history of the manifest repository is the line of Git commits which is “floating” on top of the gray plane. Parent commits point to child commits using solid arrows. The plane below contains the Git commit history of the repositories in the workspace, with each project repository boxed in by a rectangle. Parent/child commit relationships in each repository are also shown with solid arrows.\n\nThe commits in the manifest repository (again, for upstream Zephyr this is the zephyr repository itself) each have a manifest file. The manifest file in each commit specifies the corresponding commits which it expects in each of the project repositories. This relationship is shown using dotted line arrows in the diagram. Each dotted line arrow points from a commit in the manifest repository to a corresponding commit in a project repository.\n\nNotice the following important details:\n\nProjects can be added (like&#96;P1&#96; between manifest repository commits&#96;D&#96; and&#96;E&#96;) and removed (&#96;P2&#96; between the same manifest repository commits)\n\nProject and manifest repository histories don’t have to move forwards or backwards together:\n\n&#96;P2&#96; stays the same from&#96;A → B&#96;, as do&#96;P1&#96; and&#96;P3&#96; from&#96;F →\nG&#96;.\n\n&#96;P3&#96; moves forward from&#96;A → B&#96;.\n\n&#96;P3&#96; moves backward from&#96;C → D&#96;.\n\nOne use for moving backward in project history is to “revert” a regression by going back to a revision before it was introduced.\n\nProject repository commits can be “skipped”:&#96;P3&#96; moves forward multiple commits in its history from&#96;B → C&#96;.\n\nIn the above diagram, no project repository has two revisions “at the same time”: every manifest file refers to exactly one commit in the projects it cares about. This can be relaxed by using a branch name as a manifest revision, at the cost of being able to bisect manifest repository history.\n\n## Manifest Files\n\nWest manifests are YAML files. Manifests have a top-level&#96;manifest&#96; section with some subsections, like this:\n\n&#96;&#96;&#96;\nmanifest:\n  remotes:\n    # short names for project URLs\n  projects:\n    # a list of projects managed by west\n  defaults:\n    # default project attributes\n  self:\n    # configuration related to the manifest repository itself,\n    # i.e. the repository containing west.yml\n  version: \"\u003cschema-version\u003e\"\n  group-filter:\n    # a list of project groups to enable or disable\n\n&#96;&#96;&#96;\n\nIn YAML terms, the manifest file contains a mapping, with a&#96;manifest&#96; key. Any other keys and their contents are ignored (west v0.5 also required a&#96;west&#96; key, but this is ignored starting with v0.6).\n\nThe manifest contains subsections, like&#96;defaults&#96;,&#96;remotes&#96;,&#96;projects&#96;, and&#96;self&#96;. In YAML terms, the value of the&#96;manifest&#96; key is also a mapping, with these “subsections” as keys. As of west v0.10, all of these “subsection” keys are optional.\n\nThe&#96;projects&#96; value is a list of repositories managed by west and associated metadata. We’ll discuss it soon, but first we will describe the&#96;remotes&#96; section, which can be used to save typing in the&#96;projects&#96; list.\n\n### Remotes\n\nThe&#96;remotes&#96; subsection contains a sequence which specifies the base URLs where projects can be fetched from.\n\nEach&#96;remotes&#96; element has a name and a “URL base”. These are used to form the complete Git fetch URL for each project. A project’s fetch URL can be set by appending a project-specific path onto a remote URL base. (As we’ll see below, projects can also specify their complete fetch URLs.)\n\nFor example:\n\n&#96;&#96;&#96;\nmanifest:\n  # ...\n  remotes:\n    - name: remote1\n      url-base: https://git.example.com/base1\n    - name: remote2\n      url-base: https://git.example.com/base2\n\n&#96;&#96;&#96;\n\nThe&#96;remotes&#96; keys and their usage are in the following table.\n\nKey\n\nDescription\n\n&#96;name&#96;\n\nMandatory; a unique name for the remote.\n\n&#96;url-base&#96;\n\nA prefix that is prepended to the fetch URL for each project with this remote.\n\n| remotes keys |\n| --- |\n\nAbove, two remotes are given, with names&#96;remote1&#96; and&#96;remote2&#96;. Their URL bases are respectively&#96;https://git.example.com/base1&#96; and&#96;https://git.example.com/base2&#96;. You can use SSH URL bases as well; for example, you might use&#96;git@example.com:base1&#96; if&#96;remote1&#96; supported Git over SSH as well. Anything acceptable to Git will work.\n\n### Projects\n\nThe&#96;projects&#96; subsection contains a sequence describing the project repositories in the west workspace. Every project has a unique name. You can specify what Git remote URLs to use when cloning and fetching the projects, what revisions to track, and where the project should be stored on the local file system. Note that west projects are different from modules.\n\nHere is an example. We’ll assume the&#96;remotes&#96; given above.\n\n&#96;&#96;&#96;\nmanifest:\n  # [... same remotes as above...]\n  projects:\n    - name: proj1\n      description: the first example project\n      remote: remote1\n      path: extra/project-1\n    - name: proj2\n      description: |\n        A multi-line description of the second example\n        project.\n      repo-path: my-path\n      remote: remote2\n      revision: v1.3\n    - name: proj3\n      url: https://github.com/user/project-three\n      revision: abcde413a111\n    - name: proj4\n      url: https://github.com/user/project-four\n      revision: pull/69/head # GitHub Pull Request\n\n&#96;&#96;&#96;\n\nIn this manifest:\n\n&#96;proj1&#96; has remote&#96;remote1&#96;, so its Git fetch URL is&#96;https://git.example.com/base1/proj1&#96;. The remote&#96;url-base&#96; is appended with a&#96;/&#96; and the project&#96;name&#96; to form the URL.\n\nLocally, this project will be cloned at path&#96;extra/project-1&#96; relative to the west workspace’s root directory, since it has an explicit&#96;path&#96; attribute with this value.\n\nSince the project has no&#96;revision&#96; specified,&#96;master&#96; is used by default. The current tip of this branch will be fetched and checked out as a detached&#96;HEAD&#96; when west next updates this project.\n\n&#96;proj2&#96; has a&#96;remote&#96; and a&#96;repo-path&#96;, so its fetch URL is&#96;https://git.example.com/base2/my-path&#96;. The&#96;repo-path&#96; attribute, if present, overrides the default&#96;name&#96; when forming the fetch URL.\n\nSince the project has no&#96;path&#96; attribute, its&#96;name&#96; is used by default. It will be cloned into a directory named&#96;proj2&#96;. The commit pointed to by the&#96;v1.3&#96; tag will be checked out when west updates the project.\n\n&#96;proj3&#96; has an explicit&#96;url&#96;, so it will be fetched from&#96;https://github.com/user/project-three&#96;.\n\nIts local path defaults to its name,&#96;proj3&#96;. Commit&#96;abcde413a111&#96; will be checked out when it is next updated.\n\nThe available project keys and their usage are in the following table. Sometimes we’ll refer to the&#96;defaults&#96; subsection; it will be described next.\n\nKey(s)\n\nDescription\n\n&#96;name&#96;\n\nMandatory; a unique name for the project. The name cannot be one of the reserved values “west” or “manifest”. The name must be unique in the manifest file.\n\n&#96;description&#96;\n\nOptional, an informational description of the project. Added in west v1.2.0.\n\n&#96;remote&#96;,&#96;url&#96;\n\nMandatory (one of the two, but not both).\n\nIf the project has a&#96;remote&#96;, that remote’s&#96;url-base&#96; will be combined with the project’s&#96;name&#96;(or&#96;repo-path&#96;, if it has one) to form the fetch URL instead.\n\nIf the project has a&#96;url&#96;, that’s the complete fetch URL for the remote Git repository.\n\nIf the project has neither, the&#96;defaults&#96; section must specify a&#96;remote&#96;, which will be used as the project’s remote. Otherwise, the manifest is invalid.\n\n&#96;repo-path&#96;\n\nOptional. If given, this is concatenated on to the remote’s&#96;url-base&#96; instead of the project’s&#96;name&#96; to form its fetch URL. Projects may not have both&#96;url&#96; and&#96;repo-path&#96; attributes.\n\n&#96;revision&#96;\n\nOptional. The Git revision that&#96;west update&#96; should check out. This will be checked out as a detached HEAD by default, to avoid conflicting with local branch names. If not given, the&#96;revision&#96; value from the&#96;defaults&#96; subsection will be used if present.\n\nA project revision can be any fetchable git reference: branch, tag, SHA, pull request,…\n\nThe default&#96;revision&#96; is&#96;master&#96; if not otherwise specified.\n\nUsing&#96;HEAD~0&#96; [1] as the&#96;revision&#96; will cause west to keep the current state of the project.\n\n&#96;path&#96;\n\nOptional. Relative path specifying where to clone the repository locally, relative to the top directory in the west workspace. If missing, the project’s&#96;name&#96; is used as a directory name.\n\n&#96;clone-depth&#96;\n\nOptional. If given, a positive integer which creates a shallow history in the cloned repository limited to the given number of commits. This can only be used if the&#96;revision&#96; is a branch or tag.\n\n&#96;west-commands&#96;\n\nOptional. If given, a relative path to a YAML file within the project which describes additional west commands provided by that project. This file is named&#96;west-commands.yml&#96; by convention. See Extensions for details.\n\n&#96;import&#96;\n\nOptional. If&#96;true&#96;, imports projects from manifest files in the given repository into the current manifest. See Manifest Imports for details.\n\n&#96;groups&#96;\n\nOptional, a list of groups the project belongs to. See Project Groups for details.\n\n&#96;submodules&#96;\n\nOptional. You can use this to make&#96;west update&#96; also update Git submodules defined by the project. See Git Submodules in Projects for details.\n\n&#96;userdata&#96;\n\nOptional. The value is an arbitrary YAML value. See Repository user data.\n\n| projects elements keys |\n| --- |\n\nFootnotes\n\n### Defaults\n\nThe&#96;defaults&#96; subsection can provide default values for project attributes. In particular, the default remote name and revision can be specified here. Another way to write the same manifest we have been describing so far using&#96;defaults&#96; is:\n\n&#96;&#96;&#96;\nmanifest:\n  defaults:\n    remote: remote1\n    revision: v1.3\n\n  remotes:\n    - name: remote1\n      url-base: https://git.example.com/base1\n    - name: remote2\n      url-base: https://git.example.com/base2\n\n  projects:\n    - name: proj1\n      description: the first example project\n      path: extra/project-1\n      revision: master\n    - name: proj2\n      description: |\n        A multi-line description of the second example\n        project.\n      repo-path: my-path\n      remote: remote2\n    - name: proj3\n      url: https://github.com/user/project-three\n      revision: abcde413a111\n\n&#96;&#96;&#96;\n\nThe available&#96;defaults&#96; keys and their usage are in the following table.\n\nKey\n\nDescription\n\n&#96;remote&#96;\n\nOptional. This will be used for a project’s&#96;remote&#96; if it does not have a&#96;url&#96; or&#96;remote&#96; key set.\n\n&#96;revision&#96;\n\nOptional. This will be used for a project’s&#96;revision&#96; if it does not have one set. If not given, the default is&#96;master&#96;.\n\n| defaults keys |\n| --- |\n\n### Self\n\nThe&#96;self&#96; subsection can be used to control the manifest repository itself.\n\nAs an example, let’s consider this snippet from the zephyr repository’s&#96;west.yml&#96;:\n\n&#96;&#96;&#96;\nmanifest:\n  # ...\n  self:\n    path: zephyr\n    west-commands: scripts/west-commands.yml\n\n&#96;&#96;&#96;\n\nThis ensures that the zephyr repository is cloned into path&#96;zephyr&#96;, though as explained above that would have happened anyway if cloning from the default manifest URL,&#96;https://github.com/zephyrproject-rtos/zephyr&#96;. Since the zephyr repository does contain extension commands, its&#96;self&#96; entry declares the location of the corresponding&#96;west-commands.yml&#96; relative to the repository root.\n\nThe available&#96;self&#96; keys and their usage are in the following table.\n\nKey\n\nDescription\n\n&#96;path&#96;\n\nOptional. The path&#96;west init&#96; should clone the manifest repository into, relative to the west workspace topdir.\n\nIf not given, the basename of the path component in the manifest repository URL will be used by default. For example, if the URL is&#96;https://git.example.com/project-repo&#96;, the manifest repository would be cloned to the directory&#96;project-repo&#96;.\n\n&#96;west-commands&#96;\n\nOptional. This is analogous to the same key in a project sequence element.\n\n&#96;import&#96;\n\nOptional. This is also analogous to the&#96;projects&#96; key, but allows importing projects from other files in the manifest repository. See Manifest Imports.\n\n| self keys |\n| --- |\n\n### Version\n\nThe&#96;version&#96; subsection declares that the manifest file uses features which were introduced in some version of west. Attempts to load the manifest with older versions of west will fail with an error message that explains the minimum required version of west which is needed.\n\nHere is an example:\n\n&#96;&#96;&#96;\nmanifest:\n  # Marks that this file uses version 0.10 of the west manifest\n  # file format.\n  #\n  # An attempt to load this manifest file with west v0.8.0 will\n  # fail with an error message saying that west v0.10.0 or\n  # later is required.\n  version: \"0.10\"\n\n&#96;&#96;&#96;\n\nThe pykwalify schema&#96;manifest-schema.yml&#96; in the west source code repository is used to validate the manifest section.\n\nHere is a table with the valid&#96;version&#96; values, along with information about the manifest file features that were introduced in that version.\n\n&#96;version&#96;\n\nNew features\n\n&#96;\"0.7\"&#96;\n\nInitial support for the&#96;version&#96; feature. All manifest file features that are not otherwise mentioned in this table were introduced in west v0.7.0 or earlier.\n\n&#96;\"0.8\"&#96;\n\nSupport for&#96;import: path-prefix:&#96;(Option 3: Mapping)\n\n&#96;\"0.9\"&#96;\n\nUse of west v0.9.x is discouraged.\n\nThis schema version is provided to allow users to explicitly request compatibility with west v0.9.0. However, west v0.10.0 and later have incompatible behavior for features that were introduced in west v0.9.0. You should ignore version “0.9” if possible.\n\n&#96;\"0.10\"&#96;\n\nSupport for:\n\n&#96;submodules:&#96; in&#96;projects:&#96;(Git Submodules in Projects)\n\n&#96;manifest: group-filter:&#96;, and&#96;groups:&#96; in&#96;projects:&#96;(Project Groups)\n\nThe&#96;import:&#96; feature now supports&#96;allowlist:&#96; and&#96;blocklist:&#96;; these are respectively recommended as replacements for older names as part of a general Zephyr-wide inclusive language change. The older key names are still supported for backwards compatibility. (Manifest Imports, Option 3: Mapping)\n\n&#96;\"0.12\"&#96;\n\nSupport for&#96;userdata:&#96; in&#96;projects:&#96;(Repository user data)\n\n&#96;\"0.13\"&#96;\n\nSupport for&#96;self: userdata:&#96;(Repository user data)\n\n&#96;\"1.0\"&#96;\n\nIdentical to&#96;\"0.13\"&#96;, but available for use by users that do not wish to use a&#96;\"0.x\"&#96; version field.\n\n&#96;\"1.2\"&#96;\n\nSupport for&#96;description:&#96; in&#96;projects:&#96;(Projects)\n\nNote\n\nVersions of west without any new features in the manifest file format do not change the list of valid&#96;version&#96; values. For example,&#96;version:\n\"0.11\"&#96; is not valid, because west v0.11.x did not introduce new manifest file format features.\n\nQuoting the&#96;version&#96; value as shown above forces the YAML parser to treat it as a string. Without quotes,&#96;0.10&#96; in YAML is just the floating point value&#96;0.1&#96;. You can omit the quotes if the value is the same when cast to string, but it’s best to include them. Always use quotes if you’re not sure.\n\nIf you do not include a&#96;version&#96; in your manifest, each new release of west assumes that it should try to load it using the features that were available in that release. This may result in error messages that are harder to understand if that version of west is too old to load the manifest.\n\n### Group-filter\n\nSee Project Groups.\n\n## Active and Inactive Projects\n\nProjects defined in the west manifest can be inactive or active. The difference is that an inactive project is generally ignored by west. For example,&#96;west update&#96; will not update inactive projects, and&#96;west list&#96; will not print information about them by default. As another example, any Manifest Imports in an inactive project will be ignored by west.\n\nThere are two ways to make a project inactive:\n\nUsing the&#96;manifest.project-filter&#96; configuration option. If a project is made active or inactive using this option, then the rules related to making a project inactive using its&#96;groups:&#96; are ignored. That is, if a regular expression in&#96;manifest.project-filter&#96; applies to a project, the project’s groups have no effect on whether it is active or inactive.\n\nSee the entry for this option in Built-in Configuration Options for details.\n\nOtherwise, if a project has groups, and they are all disabled, then the project is inactive.\n\nSee the following section for details.\n\n## Project Groups\n\nYou can use the&#96;groups&#96; and&#96;group-filter&#96; keys briefly described above to place projects into groups, and to enable or disable groups.\n\nFor example, this lets you run a&#96;west forall&#96; command only on the projects in the group by using&#96;west forall --group&#96;. This can also let you make projects inactive; see the previous section for more information on inactive projects.\n\nThe next section introduces project groups. The following section describes Enabled and Disabled Project Groups. There are some basic examples in Project Group Examples. Finally, Group Filters and Imports provides a simplified overview of how&#96;group-filter&#96; interacts with the Manifest Imports feature.\n\n### Groups Basics\n\nThe&#96;groups:&#96; and&#96;group-filter:&#96; keys appear in the manifest like this:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: some-project\n      groups: ...\n  group-filter: ...\n\n&#96;&#96;&#96;\n\nThe&#96;groups&#96; key’s value is a list of group names. Group names are strings.\n\nYou can enable or disable project groups using&#96;group-filter&#96;. Projects whose groups are all disabled, and which are not otherwise made active by a&#96;manifest.project-filter&#96; configuration option, are inactive.\n\nFor example, in this manifest fragment:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: project-1\n      groups:\n        - groupA\n    - name: project-2\n      groups:\n        - groupB\n        - groupC\n    - name: project-3\n\n&#96;&#96;&#96;\n\nThe projects are in these groups:\n\n&#96;project-1&#96;: one group, named&#96;groupA&#96;\n\n&#96;project-2&#96;: two groups, named&#96;groupB&#96; and&#96;groupC&#96;\n\n&#96;project-3&#96;: no groups\n\nProject group names must not contain commas (,), colons (:), or whitespace.\n\nGroup names must not begin with a dash (-) or the plus sign (+), but they may contain these characters elsewhere in their names. For example,&#96;foo-bar&#96; and&#96;foo+bar&#96; are valid groups, but&#96;-foobar&#96; and&#96;+foobar&#96; are not.\n\nGroup names are otherwise arbitrary strings. Group names are case sensitive.\n\nAs a restriction, no project may use both&#96;import:&#96; and&#96;groups:&#96;. (This is necessary to avoid some pathological edge cases.)\n\n### Enabled and Disabled Project Groups\n\nAll project groups are enabled by default. You can enable or disable groups in both your manifest file and Configuration.\n\nWithin a manifest file,&#96;manifest: group-filter:&#96; is a YAML list of groups to enable and disable.\n\nTo enable a group, prefix its name with a plus sign (+). For example,&#96;groupA&#96; is enabled in this manifest fragment:\n\n&#96;&#96;&#96;\nmanifest:\n  group-filter: [+groupA]\n\n&#96;&#96;&#96;\n\nAlthough this is redundant for groups that are already enabled by default, it can be used to override settings in an imported manifest file. See Group Filters and Imports for more information.\n\nTo disable a group, prefix its name with a dash (-). For example,&#96;groupA&#96; and&#96;groupB&#96; are disabled in this manifest fragment:\n\n&#96;&#96;&#96;\nmanifest:\n  group-filter: [-groupA,-groupB]\n\n&#96;&#96;&#96;\n\nNote\n\nSince&#96;group-filter&#96; is a YAML list, you could have written this fragment as follows:\n\n&#96;&#96;&#96;\nmanifest:\n  group-filter:\n    - -groupA\n    - -groupB\n\n&#96;&#96;&#96;\n\nHowever, this syntax is harder to read and therefore discouraged.\n\nIn addition to the manifest file, you can control which groups are enabled and disabled using the&#96;manifest.group-filter&#96; configuration option. This option is a comma-separated list of groups to enable and/or disable.\n\nTo enable a group, add its name to the list prefixed with&#96;+&#96;. To disable a group, add its name prefixed with&#96;-&#96;. For example, setting&#96;manifest.group-filter&#96; to&#96;+groupA,-groupB&#96; enables&#96;groupA&#96;, and disables&#96;groupB&#96;.\n\nThe value of the configuration option overrides any data in the manifest file. You can think of this as if the&#96;manifest.group-filter&#96; configuration option is appended to the&#96;manifest: group-filter:&#96; list from YAML, with “last entry wins” semantics.\n\n#### Practical Example: Reducing Workspace Downloads\n\nBy default,&#96;west update&#96; fetches all active projects defined in the manifest. Large workspaces may include optional modules, vendor HALs, experimental components, or platform-specific dependencies and vulnerabilities that are not required for every workflow.\n\nProject groups can be used to control which grouped projects are considered active during&#96;west&#96; operations.\n\nFor example, consider the following manifest fragment:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: hal_nordic\n      groups:\n        - nordic\n    - name: hal_stm32\n      groups:\n        - stm32\n    - name: experimental_lib\n      groups:\n        - optional\n\n&#96;&#96;&#96;\n\nA workspace targeting Nordic devices can disable the&#96;stm32&#96; and&#96;optional&#96; groups before running&#96;west update&#96;:\n\n&#96;&#96;&#96;\nwest config manifest.group-filter -- \"-stm32,-optional\"\n\n&#96;&#96;&#96;\n\nAfter configuring the filter, running:\n\n&#96;&#96;&#96;\nwest update\n\n&#96;&#96;&#96;\n\nThis skips projects that belong only to disabled groups.\n\nNote\n\nProject groups only affect projects explicitly assigned to matching groups in the manifest. Projects without matching group definitions remain active regardless of the configured&#96;manifest.group-filter&#96; value.\n\nNote\n\nChanging&#96;manifest.group-filter&#96; does not automatically remove repositories already cloned into the workspace. It affects whether projects are considered active during subsequent&#96;west&#96; operations.\n\nThis workflow can help reduce unnecessary downloads and simplify workspace management in large multi-project environments.\n\n### Project Group Examples\n\nThis section contains example situations involving project groups and active projects. The examples use both&#96;manifest: group-filter:&#96; YAML lists and&#96;manifest.group-filter&#96; configuration lists, to show how they work together.\n\nNote that the&#96;defaults&#96; and&#96;remotes&#96; data in the following manifests isn’t relevant except to make the examples complete and self-contained.\n\nNote\n\nIn all of the examples that follow, the&#96;manifest.project-filter&#96; option is assumed to be unset.\n\n#### Example 1: no disabled groups\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      groups:\n        - groupA\n    - name: bar\n      groups:\n        - groupA\n        - groupB\n    - name: baz\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is not set (you can ensure this by running&#96;west config -D manifest.group-filter&#96;).\n\nNo groups are disabled, because all groups are enabled by default. Therefore, all three projects (&#96;foo&#96;,&#96;bar&#96;, and&#96;baz&#96;) are active. Note that there is no way to make project&#96;baz&#96; inactive, since it has no groups.\n\n#### Example 2: Disabling one group via manifest\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      groups:\n        - groupA\n    - name: bar\n      groups:\n        - groupA\n        - groupB\n\n  group-filter: [-groupA]\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is not set (you can ensure this by running&#96;west config -D manifest.group-filter&#96;).\n\nSince&#96;groupA&#96; is disabled, project&#96;foo&#96; is inactive. Project&#96;bar&#96; is active, because&#96;groupB&#96; is enabled.\n\n#### Example 3: Disabling multiple groups via manifest\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      groups:\n        - groupA\n    - name: bar\n      groups:\n        - groupA\n        - groupB\n\n  group-filter: [-groupA,-groupB]\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is not set (you can ensure this by running&#96;west config -D manifest.group-filter&#96;).\n\nBoth&#96;foo&#96; and&#96;bar&#96; are inactive, because all of their groups are disabled.\n\n#### Example 4: Disabling a group via configuration\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      groups:\n        - groupA\n    - name: bar\n      groups:\n        - groupA\n        - groupB\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is set to&#96;-groupA&#96;(you can ensure this by running&#96;west config manifest.group-filter -- -groupA&#96;; the extra&#96;--&#96; is required so the argument parser does not treat&#96;-groupA&#96; as a command line option&#96;-g&#96; with value&#96;roupA&#96;).\n\nProject&#96;foo&#96; is inactive because&#96;groupA&#96; has been disabled by the&#96;manifest.group-filter&#96; configuration option. Project&#96;bar&#96; is active because&#96;groupB&#96; is enabled.\n\n#### Example 5: Overriding a disabled group via configuration\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n    - name: bar\n      groups:\n        - groupA\n    - name: baz\n      groups:\n        - groupA\n        - groupB\n\n  group-filter: [-groupA]\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is set to&#96;+groupA&#96;(you can ensure this by running&#96;west config manifest.group-filter +groupA&#96;).\n\nIn this case,&#96;groupA&#96; is enabled: the&#96;manifest.group-filter&#96; configuration option has higher precedence than the&#96;manifest: group-filter:\n[-groupA]&#96; content in the manifest file.\n\nTherefore, projects&#96;foo&#96; and&#96;bar&#96; are both active.\n\n#### Example 6: Overriding multiple disabled groups via configuration\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n    - name: bar\n      groups:\n        - groupA\n    - name: baz\n      groups:\n        - groupA\n        - groupB\n\n  group-filter: [-groupA,-groupB]\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is set to&#96;+groupA,+groupB&#96;(you can ensure this by running&#96;west config\nmanifest.group-filter \"+groupA,+groupB\"&#96;).\n\nIn this case, both&#96;groupA&#96; and&#96;groupB&#96; are enabled, because the configuration value overrides the manifest file for both groups.\n\nTherefore, projects&#96;foo&#96; and&#96;bar&#96; are both active.\n\n#### Example 7: Disabling multiple groups via configuration\n\nThe entire manifest file is:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n    - name: bar\n      groups:\n        - groupA\n    - name: baz\n      groups:\n        - groupA\n        - groupB\n\n  defaults:\n    remote: example-remote\n  remotes:\n    - name: example-remote\n      url-base: https://git.example.com\n\n&#96;&#96;&#96;\n\nThe&#96;manifest.group-filter&#96; configuration option is set to&#96;-groupA,-groupB&#96;(you can ensure this by running&#96;west config\nmanifest.group-filter -- \"-groupA,-groupB\"&#96;).\n\nIn this case, both&#96;groupA&#96; and&#96;groupB&#96; are disabled.\n\nTherefore, projects&#96;foo&#96; and&#96;bar&#96; are both inactive.\n\n### Group Filters and Imports\n\nThis section provides a simplified description of how the&#96;manifest:\ngroup-filter:&#96; value behaves when combined with Manifest Imports. For complete details, see Manifest Import Details.\n\nWarning\n\nThe below semantics apply to west v0.10.0 and later. West v0.9.x semantics are different, and combining&#96;group-filter&#96; with&#96;import&#96; in west v0.9.x is discouraged.\n\nIn short:\n\nif you only import one manifest, any groups it disables in its&#96;group-filter&#96; are also disabled in your manifest\n\nyou can override this in your manifest file’s&#96;manifest: group-filter:&#96; value, your workspace’s&#96;manifest.group-filter&#96; configuration option, or both\n\nHere are some examples.\n\n#### Example 1: no overrides\n\nYou are using this&#96;parent/west.yml&#96; manifest:\n\n&#96;&#96;&#96;\n# parent/west.yml:\nmanifest:\n  projects:\n    - name: child\n      url: https://git.example.com/child\n      import: true\n    - name: project-1\n      url: https://git.example.com/project-1\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nAnd&#96;child/west.yml&#96; contains:\n\n&#96;&#96;&#96;\n# child/west.yml:\nmanifest:\n  group-filter: [-unstable]\n  projects:\n    - name: project-2\n      url: https://git.example.com/project-2\n    - name: project-3\n      url: https://git.example.com/project-3\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nOnly&#96;child&#96; and&#96;project-2&#96; are active in the resolved manifest.\n\nThe&#96;unstable&#96; group is disabled in&#96;child/west.yml&#96;, and that is not overridden in&#96;parent/west.yml&#96;. Therefore, the final&#96;group-filter&#96; for the resolved manifest is&#96;[-unstable]&#96;.\n\nSince&#96;project-1&#96; and&#96;project-3&#96; are in the&#96;unstable&#96; group and are not in any other group, they are inactive.\n\n#### Example 2: overriding an imported group-filter via manifest\n\nYou are using this&#96;parent/west.yml&#96; manifest:\n\n&#96;&#96;&#96;\n# parent/west.yml:\nmanifest:\n  group-filter: [+unstable,-optional]\n  projects:\n    - name: child\n      url: https://git.example.com/child\n      import: true\n    - name: project-1\n      url: https://git.example.com/project-1\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nAnd&#96;child/west.yml&#96; contains:\n\n&#96;&#96;&#96;\n# child/west.yml:\nmanifest:\n  group-filter: [-unstable]\n  projects:\n    - name: project-2\n      url: https://git.example.com/project-2\n      groups:\n        - optional\n    - name: project-3\n      url: https://git.example.com/project-3\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nOnly the&#96;child&#96;,&#96;project-1&#96;, and&#96;project-3&#96; projects are active.\n\nThe&#96;[-unstable]&#96; group filter in&#96;child/west.yml&#96; is overridden in&#96;parent/west.yml&#96;, so the&#96;unstable&#96; group is enabled. Since&#96;project-1&#96; and&#96;project-3&#96; are in the&#96;unstable&#96; group, they are active.\n\nThe same&#96;parent/west.yml&#96; file disables the&#96;optional&#96; group, so&#96;project-2&#96; is inactive.\n\nThe final group filter specified by&#96;parent/west.yml&#96; is&#96;[+unstable,-optional]&#96;.\n\n#### Example 3: overriding an imported group-filter via configuration\n\nYou are using this&#96;parent/west.yml&#96; manifest:\n\n&#96;&#96;&#96;\n# parent/west.yml:\nmanifest:\n  projects:\n    - name: child\n      url: https://git.example.com/child\n      import: true\n    - name: project-1\n      url: https://git.example.com/project-1\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nAnd&#96;child/west.yml&#96; contains:\n\n&#96;&#96;&#96;\n# child/west.yml:\nmanifest:\n  group-filter: [-unstable]\n  projects:\n    - name: project-2\n      url: https://git.example.com/project-2\n      groups:\n        - optional\n    - name: project-3\n      url: https://git.example.com/project-3\n      groups:\n        - unstable\n\n&#96;&#96;&#96;\n\nIf you run:\n\n&#96;&#96;&#96;\nwest config manifest.group-filter +unstable,-optional\n\n&#96;&#96;&#96;\n\nThen only the&#96;child&#96;,&#96;project-1&#96;, and&#96;project-3&#96; projects are active.\n\nThe&#96;-unstable&#96; group filter in&#96;child/west.yml&#96; is overridden in the&#96;manifest.group-filter&#96; configuration option, so the&#96;unstable&#96; group is enabled. Since&#96;project-1&#96; and&#96;project-3&#96; are in the&#96;unstable&#96; group, they are active.\n\nThe same configuration option disables the&#96;optional&#96; group, so&#96;project-2&#96; is inactive.\n\nThe final group filter specified by&#96;parent/west.yml&#96; and the&#96;manifest.group-filter&#96; configuration option is&#96;[+unstable,-optional]&#96;.\n\n## Git Submodules in Projects\n\nYou can use the&#96;submodules&#96; keys briefly described above to force&#96;west update&#96; to also handle any Git submodules configured in project’s git repository. The&#96;submodules&#96; key can appear inside&#96;projects&#96;, like this:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: some-project\n      submodules: ...\n\n&#96;&#96;&#96;\n\nThe&#96;submodules&#96; key can be a boolean or a list of mappings. We’ll describe these in order.\n\n### Option 1: Boolean\n\nThis is the easiest way to use&#96;submodules&#96;.\n\nIf&#96;submodules&#96; is&#96;true&#96; as a&#96;projects&#96; attribute,&#96;west update&#96; will recursively update the project’s Git submodules whenever it updates the project itself. If it’s&#96;false&#96; or missing, it has no effect.\n\nFor example, let’s say you have a source code repository&#96;foo&#96;, which has some submodules, and you want&#96;west update&#96; to keep all of them in sync, along with another project named&#96;bar&#96; in the same workspace.\n\nYou can do that with this manifest file:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      submodules: true\n    - name: bar\n\n&#96;&#96;&#96;\n\nHere,&#96;west update&#96; will initialize and update all submodules in&#96;foo&#96;. If&#96;bar&#96; has any submodules, they are ignored, because&#96;bar&#96; does not have a&#96;submodules&#96; value.\n\n### Option 2: List of mappings\n\nThe&#96;submodules&#96; key may be a list of mappings, one list element for each desired submodule. Each submodule listed is updated recursively. You can still track and update unlisted submodules with&#96;git&#96; commands manually; present or not they will be completely ignored by&#96;west&#96;.\n\nThe&#96;path&#96; key must match exactly the path of one submodule relative to its parent west project, as shown in the output of&#96;git submodule\nstatus&#96;. The&#96;name&#96; key is optional and not used by west for now; it’s not passed to&#96;git submodule&#96; commands either. The&#96;name&#96; key was briefly mandatory in west version 0.9.0, but was made optional in 0.9.1.\n\nFor example, let’s say you have a source code repository&#96;foo&#96;, which has many submodules, and you want&#96;west update&#96; to keep some but not all of them in sync, along with another project named&#96;bar&#96; in the same workspace.\n\nYou can do that with this manifest file:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      submodules:\n        - path: path/to/foo-first-sub\n        - name: foo-second-sub\n          path: path/to/foo-second-sub\n    - name: bar\n\n&#96;&#96;&#96;\n\nHere,&#96;west update&#96; will recursively initialize and update just the submodules in&#96;foo&#96; with paths&#96;path/to/foo-first-sub&#96; and&#96;path/to/foo-second-sub&#96;. Any submodules in&#96;bar&#96; are still ignored.\n\n## Repository user data\n\nWest versions v0.12 and later support an optional&#96;userdata&#96; key in projects.\n\nWest versions v0.13 and later supports this key in the&#96;manifest: self:&#96; section.\n\nIt is meant for consumption by programs that require user-specific project metadata. Beyond parsing it as YAML, west itself ignores the value completely.\n\nThe key’s value is arbitrary YAML. West parses the value and makes it accessible to programs using West APIs as the&#96;userdata&#96; attribute of the corresponding&#96;west.manifest.Project&#96; object.\n\nExample manifest fragment:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n    - name: bar\n      userdata: a-string\n    - name: baz\n      userdata:\n        key: value\n  self:\n    userdata: blub\n\n&#96;&#96;&#96;\n\nExample Python usage:\n\n&#96;&#96;&#96;\nmanifest = west.manifest.Manifest.from_file()\n\nfoo, bar, baz = manifest.get_projects(['foo', 'bar', 'baz'])\n\nfoo.userdata # None\nbar.userdata # 'a-string'\nbaz.userdata # {'key': 'value'}\nmanifest.userdata # 'blub'\n\n&#96;&#96;&#96;\n\n## Manifest Imports\n\nYou can use the&#96;import&#96; key briefly described above to include projects from other manifest files in your&#96;west.yml&#96;. This key can be either a&#96;project&#96; or&#96;self&#96; section attribute:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: some-project\n      import: ...\n  self:\n    import: ...\n\n&#96;&#96;&#96;\n\nYou can use a “self: import:” to load additional files from the repository containing your&#96;west.yml&#96;. You can use a “project: … import:” to load additional files defined in that project’s Git history.\n\nWest resolves the final manifest from individual manifest files in this order:\n\nimported files in&#96;self&#96;\n\nyour&#96;west.yml&#96; file\n\nimported files in&#96;projects&#96;\n\nDuring resolution, west ignores projects which have already been defined in other files. For example, a project named&#96;foo&#96; in your&#96;west.yml&#96; makes west ignore other projects named&#96;foo&#96; imported from your&#96;projects&#96; list.\n\nThe&#96;import&#96; key can be a boolean, path, mapping, or sequence. We’ll describe these in order, using examples:\n\nBoolean\n\nExample 1.1: Downstream of a Zephyr release\n\nExample 1.2: “Rolling release” Zephyr downstream\n\nExample 1.3: Downstream of a Zephyr release, with module fork\n\nRelative path\n\nExample 2.1: Downstream of a Zephyr release with explicit path\n\nExample 2.2: Downstream with directory of manifest files\n\nExample 2.3: Continuous Integration overrides\n\nMapping with additional configuration\n\nExample 3.1: Downstream with name allowlist\n\nExample 3.2: Downstream with path allowlist\n\nExample 3.3: Downstream with path blocklist\n\nExample 3.4: Import into a subdirectory\n\nSequence of paths and mappings\n\nExample 4.1: Downstream with sequence of manifest files\n\nExample 4.2: Import order illustration\n\nA more formal description of how this works is last, after the examples.\n\n### Troubleshooting Note\n\nIf you’re using this feature and find west’s behavior confusing, try resolving your manifest to see the final results after imports are done.\n\n### Option 1: Boolean\n\nThis is the easiest way to use&#96;import&#96;.\n\nIf&#96;import&#96; is&#96;true&#96; as a&#96;projects&#96; attribute, west imports projects from the&#96;west.yml&#96; file in that project’s root directory. If it’s&#96;false&#96; or missing, it has no effect. For example, this manifest would import&#96;west.yml&#96; from the&#96;p1&#96; git repository at revision&#96;v1.0&#96;:\n\n&#96;&#96;&#96;\nmanifest:\n  # ...\n  projects:\n    - name: p1\n      revision: v1.0\n      import: true    # Import west.yml from p1's v1.0 git tag\n    - name: p2\n      import: false   # Nothing is imported from p2.\n    - name: p3        # Nothing is imported from p3 either.\n\n&#96;&#96;&#96;\n\nIt’s an error to set&#96;import&#96; to either&#96;true&#96; or&#96;false&#96; inside&#96;self&#96;, like this:\n\n&#96;&#96;&#96;\nmanifest:\n  # ...\n  self:\n    import: true  # Error\n\n&#96;&#96;&#96;\n\n#### Example 1.1: Downstream of a Zephyr release\n\nYou have a source code repository you want to use with Zephyr v1.14.1 LTS. You want to maintain the whole thing using west. You don’t want to modify any of the mainline repositories.\n\nIn other words, the west workspace you want looks like this:\n\n&#96;&#96;&#96;\nmy-downstream/\n├── .west/                     # west directory\n├── zephyr/                    # mainline zephyr repository\n│   └── west.yml               # the v1.14.1 version of this file is imported\n├── modules/                   # modules from mainline zephyr\n│   ├── hal/\n│   └── [...other directories..]\n├── [ ... other projects ...]  # other mainline repositories\n└── my-repo/                   # your downstream repository\n    ├── west.yml               # main manifest importing zephyr/west.yml v1.14.1\n    └── [...other files..]\n\n&#96;&#96;&#96;\n\nYou can do this with the following&#96;my-repo/west.yml&#96;:\n\n&#96;&#96;&#96;\n# my-repo/west.yml:\nmanifest:\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n  projects:\n    - name: zephyr\n      remote: zephyrproject-rtos\n      revision: v1.14.1\n      import: true\n\n&#96;&#96;&#96;\n\nYou can then create the workspace on your computer like this, assuming&#96;my-repo&#96; is hosted at&#96;https://git.example.com/my-repo&#96;:\n\n&#96;&#96;&#96;\nwest init -m https://git.example.com/my-repo my-downstream\ncd my-downstream\nwest update\n\n&#96;&#96;&#96;\n\nAfter&#96;west init&#96;,&#96;my-downstream/my-repo&#96; will be cloned.\n\nAfter&#96;west update&#96;, all of the projects defined in the&#96;zephyr&#96; repository’s&#96;west.yml&#96; at revision&#96;v1.14.1&#96; will be cloned into&#96;my-downstream&#96; as well.\n\nYou can add and commit any code to&#96;my-repo&#96; you please at this point, including your own Zephyr applications, drivers, etc. See Application Development.\n\n#### Example 1.2: “Rolling release” Zephyr downstream\n\nThis is similar to Example 1.1: Downstream of a Zephyr release, except we’ll use&#96;revision:\nmain&#96; for the zephyr repository:\n\n&#96;&#96;&#96;\n# my-repo/west.yml:\nmanifest:\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n  projects:\n    - name: zephyr\n      remote: zephyrproject-rtos\n      revision: main\n      import: true\n\n&#96;&#96;&#96;\n\nYou can create the workspace in the same way:\n\n&#96;&#96;&#96;\nwest init -m https://git.example.com/my-repo my-downstream\ncd my-downstream\nwest update\n\n&#96;&#96;&#96;\n\nThis time, whenever you run&#96;west update&#96;, the special manifest-rev branch in the&#96;zephyr&#96; repository will be updated to point at a newly fetched&#96;main&#96; branch tip from the URL https://github.com/zephyrproject-rtos/zephyr.\n\nThe contents of&#96;zephyr/west.yml&#96; at the new&#96;manifest-rev&#96; will then be used to import projects from Zephyr. This lets you stay up to date with the latest changes in the Zephyr project. The cost is that running&#96;west update&#96; will not produce reproducible results, since the remote&#96;main&#96; branch can change every time you run it.\n\nIt’s also important to understand that west ignores your working tree’s&#96;zephyr/west.yml&#96; entirely when resolving imports. West always uses the contents of imported manifests as they were committed to the latest&#96;manifest-rev&#96; when importing from a project.\n\nYou can only import manifest from the file system if they are in your manifest repository’s working tree. See Example 2.2: Downstream with directory of manifest files for an example.\n\n#### Example 1.3: Downstream of a Zephyr release, with module fork\n\nThis manifest is similar to the one in Example 1.1: Downstream of a Zephyr release, except it:\n\nis a downstream of Zephyr 2.0\n\nincludes a downstream fork of the&#96;modules/hal/nordic&#96; module which was included in that release\n\n&#96;&#96;&#96;\n# my-repo/west.yml:\nmanifest:\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n    - name: my-remote\n      url-base: https://git.example.com\n  projects:\n    - name: hal_nordic         # higher precedence\n      remote: my-remote\n      revision: my-sha\n      path: modules/hal/nordic\n    - name: zephyr\n      remote: zephyrproject-rtos\n      revision: v2.0.0\n      import: true             # imported projects have lower precedence\n\n# subset of zephyr/west.yml contents at v2.0.0:\nmanifest:\n  defaults:\n    remote: zephyrproject-rtos\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n  projects:\n  # ...\n  - name: hal_nordic           # lower precedence, values ignored\n    path: modules/hal/nordic\n    revision: another-sha\n\n&#96;&#96;&#96;\n\nWith this manifest file, the project named&#96;hal_nordic&#96;:\n\nis cloned from&#96;https://git.example.com/hal_nordic&#96; instead of&#96;https://github.com/zephyrproject-rtos/hal_nordic&#96;.\n\nis updated to commit&#96;my-sha&#96; by&#96;west update&#96;, instead of the mainline commit&#96;another-sha&#96;\n\nIn other words, when your top-level manifest defines a project, like&#96;hal_nordic&#96;, west will ignore any other definition it finds later on while resolving imports.\n\nThis does mean you have to copy the&#96;path: modules/hal/nordic&#96; value into&#96;my-repo/west.yml&#96; when defining&#96;hal_nordic&#96; there. The value from&#96;zephyr/west.yml&#96; is ignored entirely. See Resolving Manifests for troubleshooting advice if this gets confusing in practice.\n\nWhen you run&#96;west update&#96;, west will:\n\nupdate zephyr’s&#96;manifest-rev&#96; to point at the&#96;v2.0.0&#96; tag\n\nimport&#96;zephyr/west.yml&#96; at that&#96;manifest-rev&#96;\n\nlocally check out the&#96;v2.0.0&#96; revisions for all zephyr projects except&#96;hal_nordic&#96;\n\nupdate&#96;hal_nordic&#96; to&#96;my-sha&#96; instead of&#96;another-sha&#96;\n\n### Option 2: Relative path\n\nThe&#96;import&#96; value can also be a relative path to a manifest file or a directory containing manifest files. The path is relative to the root directory of the&#96;projects&#96; or&#96;self&#96; repository the&#96;import&#96; key appears in.\n\nHere is an example:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: project-1\n      revision: v1.0\n      import: west.yml\n    - name: project-2\n      revision: main\n      import: p2-manifests\n  self:\n    import: submanifests\n\n&#96;&#96;&#96;\n\nThis will import the following:\n\nthe contents of&#96;project-1/west.yml&#96; at&#96;manifest-rev&#96;, which points at tag&#96;v1.0&#96; after running&#96;west update&#96;\n\nany YAML files in the directory tree&#96;project-2/p2-manifests&#96; at the latest commit in the&#96;main&#96; branch, as fetched by&#96;west update&#96;, sorted by file name\n\nYAML files in&#96;submanifests&#96; in your manifest repository, as they appear on your file system, sorted by file name\n\nNotice how&#96;projects&#96; imports get data from Git using&#96;manifest-rev&#96;, while&#96;self&#96; imports get data from your file system. This is because as usual, west leaves version control for your manifest repository up to you.\n\n#### Example 2.1: Downstream of a Zephyr release with explicit path\n\nThis is an explicit way to write an equivalent manifest to the one in Example 1.1: Downstream of a Zephyr release.\n\n&#96;&#96;&#96;\nmanifest:\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n  projects:\n    - name: zephyr\n      remote: zephyrproject-rtos\n      revision: v1.14.1\n      import: west.yml\n\n&#96;&#96;&#96;\n\nThe setting&#96;import: west.yml&#96; means to use the file&#96;west.yml&#96; inside the&#96;zephyr&#96; project. This example is contrived, but shows the idea.\n\nThis can be useful in practice when the name of the manifest file you want to import is not&#96;west.yml&#96;.\n\n#### Example 2.2: Downstream with directory of manifest files\n\nYour Zephyr downstream has a lot of additional repositories. So many, in fact, that you want to split them up into multiple manifest files, but keep track of them all in a single manifest repository, like this:\n\n&#96;&#96;&#96;\nmy-repo/\n├── submanifests\n│   ├── 01-libraries.yml\n│   ├── 02-vendor-hals.yml\n│   └── 03-applications.yml\n└── west.yml\n\n&#96;&#96;&#96;\n\nYou want to add all the files in&#96;my-repo/submanifests&#96; to the main manifest file,&#96;my-repo/west.yml&#96;, in addition to projects in&#96;zephyr/west.yml&#96;. You want to track the latest development code in the Zephyr repository’s&#96;main&#96; branch instead of using a fixed revision.\n\nHere’s how:\n\n&#96;&#96;&#96;\n# my-repo/west.yml:\nmanifest:\n  remotes:\n    - name: zephyrproject-rtos\n      url-base: https://github.com/zephyrproject-rtos\n  projects:\n    - name: zephyr\n      remote: zephyrproject-rtos\n      revision: main\n      import: true\n  self:\n    import: submanifests\n\n&#96;&#96;&#96;\n\nManifest files are imported in this order during resolution:\n\n&#96;my-repo/submanifests/01-libraries.yml&#96;\n\n&#96;my-repo/submanifests/02-vendor-hals.yml&#96;\n\n&#96;my-repo/submanifests/03-applications.yml&#96;\n\n&#96;my-repo/west.yml&#96;\n\n&#96;zephyr/west.yml&#96;\n\nNote\n\nThe&#96;.yml&#96; file names are prefixed with numbers in this example to make sure they are imported in the specified order.\n\nYou can pick arbitrary names. West sorts files in a directory by name before importing.\n\nNotice how the manifests in&#96;submanifests&#96; are imported before&#96;my-repo/west.yml&#96; and&#96;zephyr/west.yml&#96;. In general, an&#96;import&#96; in the&#96;self&#96; section is processed before the manifest files in&#96;projects&#96; and the main manifest file.\n\nThis means projects defined in&#96;my-repo/submanifests&#96; take highest precedence. For example, if&#96;01-libraries.yml&#96; defines&#96;hal_nordic&#96;, the project by the same name in&#96;zephyr/west.yml&#96; is simply ignored. As usual, see Resolving Manifests for troubleshooting advice.\n\nThis may seem strange, but it allows you to redefine projects “after the fact”, as we’ll see in the next example.\n\n#### Example 2.3: Continuous Integration overrides\n\nYour continuous integration system needs to fetch and test multiple repositories in your west workspace from a developer’s forks instead of your mainline development trees, to see if the changes all work well together.\n\nStarting with Example 2.2: Downstream with directory of manifest files, the CI scripts add a file&#96;00-ci.yml&#96; in&#96;my-repo/submanifests&#96;, with these contents:\n\n&#96;&#96;&#96;\n# my-repo/submanifests/00-ci.yml:\nmanifest:\n  projects:\n    - name: a-vendor-hal\n      url: https://github.com/a-developer/hal\n      revision: a-pull-request-branch\n    - name: an-application\n      url: https://github.com/a-developer/application\n      revision: another-pull-request-branch\n\n&#96;&#96;&#96;\n\nThe CI scripts run&#96;west update&#96; after generating this file in&#96;my-repo/submanifests&#96;. The projects defined in&#96;00-ci.yml&#96; have higher precedence than other definitions in&#96;my-repo/submanifests&#96;, because the name&#96;00-ci.yml&#96; comes before the other file names.\n\nThus,&#96;west update&#96; always checks out the developer’s branches in the projects named&#96;a-vendor-hal&#96; and&#96;an-application&#96;, even if those same projects are also defined elsewhere.\n\n### Option 3: Mapping\n\nThe&#96;import&#96; key can also contain a mapping with the following keys:\n\n&#96;file&#96;: Optional. The name of the manifest file or directory to import. This defaults to&#96;west.yml&#96; if not present.\n\n&#96;name-allowlist&#96;: Optional. If present, a name or sequence of project names to include.\n\n&#96;path-allowlist&#96;: Optional. If present, a path or sequence of project paths to match against. This is a shell-style globbing pattern, currently implemented with pathlib. Note that this means case sensitivity is platform specific.\n\n&#96;name-blocklist&#96;: Optional. Like&#96;name-allowlist&#96;, but contains project names to exclude rather than include.\n\n&#96;path-blocklist&#96;: Optional. Like&#96;path-allowlist&#96;, but contains project paths to exclude rather than include.\n\n&#96;path-prefix&#96;: Optional (new in v0.8.0). If given, this will be prepended to the project’s path in the workspace, as well as the paths of any imported projects. This can be used to place these projects in a subdirectory of the workspace.\n\nAllowlists override blocklists if both are given. For example, if a project is blocked by path, then allowed by name, it will still be imported.\n\n#### Example 3.1: Downstream with name allowlist\n\nHere is a pair of manifest files, representing a mainline and a downstream. The downstream doesn’t want to use all the mainline projects, however. We’ll assume the mainline&#96;west.yml&#96; is hosted at&#96;https://git.example.com/mainline/manifest&#96;.\n\n&#96;&#96;&#96;\n# mainline west.yml:\nmanifest:\n  projects:\n    - name: mainline-app                # included\n      path: examples/app\n      url: https://git.example.com/mainline/app\n    - name: lib\n      path: libraries/lib\n      url: https://git.example.com/mainline/lib\n    - name: lib2                        # included\n      path: libraries/lib2\n      url: https://git.example.com/mainline/lib2\n\n# downstream west.yml:\nmanifest:\n  projects:\n    - name: mainline\n      url: https://git.example.com/mainline/manifest\n      import:\n        name-allowlist:\n          - mainline-app\n          - lib2\n    - name: downstream-app\n      url: https://git.example.com/downstream/app\n    - name: lib3\n      path: libraries/lib3\n      url: https://git.example.com/downstream/lib3\n\n&#96;&#96;&#96;\n\nAn equivalent manifest in a single file would be:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: mainline\n      url: https://git.example.com/mainline/manifest\n    - name: downstream-app\n      url: https://git.example.com/downstream/app\n    - name: lib3\n      path: libraries/lib3\n      url: https://git.example.com/downstream/lib3\n    - name: mainline-app                   # imported\n      path: examples/app\n      url: https://git.example.com/mainline/app\n    - name: lib2                           # imported\n      path: libraries/lib2\n      url: https://git.example.com/mainline/lib2\n\n&#96;&#96;&#96;\n\nIf an allowlist had not been used, the&#96;lib&#96; project from the mainline manifest would have been imported.\n\n#### Example 3.2: Downstream with path allowlist\n\nHere is an example showing how to allowlist mainline’s libraries only, using&#96;path-allowlist&#96;.\n\n&#96;&#96;&#96;\n# mainline west.yml:\nmanifest:\n  projects:\n    - name: app\n      path: examples/app\n      url: https://git.example.com/mainline/app\n    - name: lib\n      path: libraries/lib                  # included\n      url: https://git.example.com/mainline/lib\n    - name: lib2\n      path: libraries/lib2                 # included\n      url: https://git.example.com/mainline/lib2\n\n# downstream west.yml:\nmanifest:\n  projects:\n    - name: mainline\n      url: https://git.example.com/mainline/manifest\n      import:\n        path-allowlist: libraries/*\n    - name: app\n      url: https://git.example.com/downstream/app\n    - name: lib3\n      path: libraries/lib3\n      url: https://git.example.com/downstream/lib3\n\n&#96;&#96;&#96;\n\nAn equivalent manifest in a single file would be:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: lib                          # imported\n      path: libraries/lib\n      url: https://git.example.com/mainline/lib\n    - name: lib2                         # imported\n      path: libraries/lib2\n      url: https://git.example.com/mainline/lib2\n    - name: mainline\n      url: https://git.example.com/mainline/manifest\n    - name: app\n      url: https://git.example.com/downstream/app\n    - name: lib3\n      path: libraries/lib3\n      url: https://git.example.com/downstream/lib3\n\n&#96;&#96;&#96;\n\n#### Example 3.3: Downstream with path blocklist\n\nHere’s an example showing how to block all vendor HALs from mainline by common path prefix in the workspace, add your own version for the chip you’re targeting, and keep everything else.\n\n&#96;&#96;&#96;\n# mainline west.yml:\nmanifest:\n  defaults:\n    remote: mainline\n  remotes:\n    - name: mainline\n      url-base: https://git.example.com/mainline\n  projects:\n    - name: app\n    - name: lib\n      path: libraries/lib\n    - name: lib2\n      path: libraries/lib2\n    - name: hal_foo\n      path: modules/hals/foo     # excluded\n    - name: hal_bar\n      path: modules/hals/bar     # excluded\n    - name: hal_baz\n      path: modules/hals/baz     # excluded\n\n# downstream west.yml:\nmanifest:\n  projects:\n    - name: mainline\n      url: https://git.example.com/mainline/manifest\n      import:\n        path-blocklist: modules/hals/*\n    - name: hal_foo\n      path: modules/hals/foo\n      url: https://git.example.com/downstream/hal_foo\n\n&#96;&#96;&#96;\n\nAn equivalent manifest in a single file would be:\n\n&#96;&#96;&#96;\nmanifest:\n  defaults:\n    remote: mainline\n  remotes:\n    - name: mainline\n      url-base: https://git.example.com/mainline\n  projects:\n    - name: app                  # imported\n    - name: lib                  # imported\n      path: libraries/lib\n    - name: lib2                 # imported\n      path: libraries/lib2\n    - name: mainline\n      repo-path: https://git.example.com/mainline/manifest\n    - name: hal_foo\n      path: modules/hals/foo\n      url: https://git.example.com/downstream/hal_foo\n\n&#96;&#96;&#96;\n\n#### Example 3.4: Import into a subdirectory\n\nYou want to import a manifest and its projects, placing everything into a subdirectory of your west workspace.\n\nFor example, suppose you want to import this manifest from project&#96;foo&#96;, adding this project and its projects&#96;bar&#96; and&#96;baz&#96; to your workspace:\n\n&#96;&#96;&#96;\n# foo/west.yml:\nmanifest:\n  defaults:\n    remote: example\n  remotes:\n    - name: example\n      url-base: https://git.example.com\n  projects:\n    - name: bar\n    - name: baz\n\n&#96;&#96;&#96;\n\nInstead of importing these into the top level workspace, you want to place all three project repositories in an&#96;external-code&#96; subdirectory, like this:\n\n&#96;&#96;&#96;\nworkspace/\n└── external-code/\n    ├── foo/\n    ├── bar/\n    └── baz/\n\n&#96;&#96;&#96;\n\nYou can do this using this manifest:\n\n&#96;&#96;&#96;\nmanifest:\n  projects:\n    - name: foo\n      url: https://git.example.com/foo\n      import:\n        path-prefix: external-code\n\n&#96;&#96;&#96;\n\nAn equivalent manifest in a single file would be:\n\n&#96;&#96;&#96;\n# foo/west.yml:\nmanifest:\n  defaults:\n    remote: example\n  remotes:\n    - name: example\n      url-base: https://git.example.com\n  projects:\n    - name: foo\n      path: external-code/foo\n    - name: bar\n      path: external-code/bar\n    - name: baz\n      path: external-code/baz\n\n&#96;&#96;&#96;\n\n### Option 4: Sequence\n\nThe&#96;import&#96; key can also contain a sequence of files, directories, and mappings.\n\n#### Example 4.1: Downstream with sequence of manifest files\n\nThis example manifest is equivalent to the manifest in Example 2.2: Downstream with directory of manifest files, with a sequence of explicitly named files.\n\n&#96;&#96;&#96;\n# my-repo/west.yml:\nmanifest:\n  projects:\n    - name: zephyr\n      url: https://github.com/zephyrproject-rtos/zephyr\n      import: west.yml\n  self:\n    import:\n      - submanifests/01-libraries.yml\n      - submanifests/02-vendor-hals.yml\n      - submanifests/03-applications.yml\n\n&#96;&#96;&#96;\n\n#### Example 4.2: Import order illustration\n\nThis more complicated example shows the order that west imports manifest files:\n\n&#96;&#96;&#96;\n# my-repo/west.yml\nmanifest:\n  # ...\n  projects:\n    - name: my-library\n    - name: my-app\n    - name: zephyr\n      import: true\n    - name: another-manifest-repo\n      import: submanifests\n  self:\n    import:\n      - submanifests/libraries.yml\n      - submanifests/vendor-hals.yml\n      - submanifests/applications.yml\n  defaults:\n    remote: my-remote\n\n&#96;&#96;&#96;\n\nFor this example, west resolves imports in this order:\n\nthe listed files in&#96;my-repo/submanifests&#96; are first, in the order they occur (e.g.&#96;libraries.yml&#96; comes before&#96;applications.yml&#96;, since this is a sequence of files), since the&#96;self: import:&#96; is always imported first\n\n&#96;my-repo/west.yml&#96; is next (with projects&#96;my-library&#96; etc. as long as they weren’t already defined somewhere in&#96;submanifests&#96;)\n\n&#96;zephyr/west.yml&#96; is after that, since that’s the first&#96;import&#96; key in the&#96;projects&#96; list in&#96;my-repo/west.yml&#96;\n\nfiles in&#96;another-manifest-repo/submanifests&#96; are last (sorted by file name), since that’s the final project&#96;import&#96;\n\n### Manifest Import Details\n\nThis section describes how west resolves a manifest file that uses&#96;import&#96; a bit more formally.\n\n#### Overview\n\nThe&#96;import&#96; key can appear in a west manifest’s&#96;projects&#96; and&#96;self&#96; sections. The general case looks like this:\n\n&#96;&#96;&#96;\n# Top-level manifest file.\nmanifest:\n  projects:\n    - name: foo\n      import:\n        ... # import-1\n    - name: bar\n      import:\n        ... # import-2\n    # ...\n    - name: baz\n      import:\n        ... # import-N\n  self:\n    import:\n      ... # self-import\n\n&#96;&#96;&#96;\n\nImport keys are optional. If any of&#96;import-1, ..., import-N&#96; are missing, west will not import additional manifest data from that project. If&#96;self-import&#96; is missing, no additional files in the manifest repository (beyond the top-level file) are imported.\n\nThe ultimate outcomes of resolving manifest imports are:\n\na&#96;projects&#96; list, which is produced by combining the&#96;projects&#96; defined in the top-level file with those defined in imported files\n\na set of extension commands, which are drawn from the&#96;west-commands&#96; keys in the top-level file and any imported files\n\na&#96;group-filter&#96; list, which is produced by combining the top-level and any imported filters\n\nImporting is done in this order:\n\nManifests from&#96;self-import&#96; are imported first.\n\nThe top-level manifest file’s definitions are handled next.\n\nManifests from&#96;import-1&#96;, …,&#96;import-N&#96;, are imported in that order.\n\nWhen an individual&#96;import&#96; key refers to multiple manifest files, they are processed in this order:\n\nIf the value is a relative path naming a directory (or a map whose&#96;file&#96; is a directory), the manifest files it contains are processed in lexicographic order – i.e., sorted by file name.\n\nIf the value is a sequence, its elements are recursively imported in the order they appear.\n\nThis process recurses if necessary. E.g., if&#96;import-1&#96; produces a manifest file that contains an&#96;import&#96; key, it is resolved recursively using the same rules before its contents are processed further.\n\nThe following sections describe these outcomes.\n\n#### Projects\n\nThis section describes how the final&#96;projects&#96; list is created.\n\nProjects are identified by name. If the same name occurs in multiple manifests, the first definition is used, and subsequent definitions are ignored. For example, if&#96;import-1&#96; contains a project named&#96;bar&#96;, that is ignored, because the top-level&#96;west.yml&#96; has already defined a project by that name.\n\nThe contents of files named by&#96;import-1&#96; through&#96;import-N&#96; are imported from Git at the latest&#96;manifest-rev&#96; revisions in their projects. These revisions can be updated to the values&#96;rev-1&#96; through&#96;rev-N&#96; by running&#96;west update&#96;. If any&#96;manifest-rev&#96; reference is missing or out of date,&#96;west update&#96; also fetches project data from the remote fetch URL and updates the reference.\n\nAlso note that all imported manifests, from the root manifest to the repository which defines a project&#96;P&#96;, must be up to date in order for west to update&#96;P&#96; itself. For example, this means&#96;west update P&#96; would update&#96;manifest-rev&#96; in the&#96;baz&#96; project if&#96;baz/west.yml&#96; defines&#96;P&#96;, as well as updating the&#96;manifest-rev&#96; branch in the local git clone of&#96;P&#96;. Confusingly, updating&#96;baz&#96; may result in the removal of&#96;P&#96; from&#96;baz/west.yml&#96;, which “should” cause&#96;west update P&#96; to fail with an unrecognized project!\n\nFor this reason, it’s not possible to run&#96;west update P&#96; if&#96;P&#96; is defined in an imported manifest; you must update this project along with all the others with a plain&#96;west update&#96;.\n\nBy default, west won’t fetch any project data over the network if a project’s revision is a SHA or tag which is already available locally, so updating the extra projects shouldn’t take too much time unless it’s really needed. See the documentation for the update.fetch configuration option for more information.\n\n#### Extensions\n\nAll extension commands defined using&#96;west-commands&#96; keys discovered while handling imports are available in the resolved manifest.\n\nIf an imported manifest file has a&#96;west-commands:&#96; definition in its&#96;self:&#96; section, the extension commands defined there are added to the set of available extensions at the time the manifest is imported. They will thus take precedence over any extension commands with the same names added later on.\n\n#### Group filters\n\nThe resolved manifest has a&#96;group-filter&#96; value which is the result of concatenating the&#96;group-filter&#96; values in the top-level manifest and any imported manifests.\n\nManifest files which appear earlier in the import order have higher precedence and are therefore concatenated later into the final&#96;group-filter&#96;.\n\nIn other words, let:\n\nthe submanifest resolved from&#96;self-import&#96; have group filter&#96;self-filter&#96;\n\nthe top-level manifest file have group filter&#96;top-filter&#96;\n\nthe submanifests resolved from&#96;import-1&#96; through&#96;import-N&#96; have group filters&#96;filter-1&#96; through&#96;filter-N&#96; respectively\n\nThe final resolved&#96;group-filter&#96; value is then&#96;filterN + ... + filter-2 +\nfilter-1 + top-filter + self-filter&#96;, where&#96;+&#96; here refers to list concatenation.\n\nImportant\n\nThe order that filters appear in the above list matters.\n\nThe last filter element in the final concatenated list “wins” and determines if the group is enabled or disabled.\n\nFor example, in&#96;[-foo] + [+foo]&#96;, group&#96;foo&#96; is enabled. However, in&#96;[+foo] + [-foo]&#96;, group&#96;foo&#96; is disabled.\n\nFor simplicity, west and this documentation may elide concatenated group filter elements which are redundant using these rules. For example,&#96;[+foo] +\n[-foo]&#96; could be written more simply as&#96;[-foo]&#96;, for the reasons given above. As another example,&#96;[-foo] + [+foo]&#96; could be written as the empty list&#96;[]&#96;, since all groups are enabled by default.\n\n## Manifest Command\n\nThe&#96;west manifest&#96; command can be used to manipulate manifest files. It takes an action, and action-specific arguments.\n\nThe following sections describe each action and provides a basic signature for simple uses. Run&#96;west manifest --help&#96; for full details on all options.\n\n### Resolving Manifests\n\nThe&#96;--resolve&#96; action outputs a single manifest file equivalent to your current manifest and all its imported manifests:\n\n&#96;&#96;&#96;\nwest manifest --resolve [-o outfile]\n\n&#96;&#96;&#96;\n\nThe main use for this action is to see the “final” manifest contents after performing any&#96;import&#96; s.\n\nTo print detailed information about each imported manifest file and how projects are handled during manifest resolution, set the maximum verbosity level using&#96;-v&#96;:\n\n&#96;&#96;&#96;\nwest -v manifest --resolve\n\n&#96;&#96;&#96;\n\n### Freezing Manifests\n\nThe&#96;--freeze&#96; action outputs a frozen manifest:\n\n&#96;&#96;&#96;\nwest manifest --freeze [-o outfile]\n\n&#96;&#96;&#96;\n\nA “frozen” manifest is a manifest file where every project’s revision is a SHA. You can use&#96;--freeze&#96; to produce a frozen manifest that’s equivalent to your current manifest file. The&#96;-o&#96; option specifies an output file; if not given, standard output is used.\n\n### Validating Manifests\n\nThe&#96;--validate&#96; action either succeeds if the current manifest file is valid, or fails with an error:\n\n&#96;&#96;&#96;\nwest manifest --validate\n\n&#96;&#96;&#96;\n\nThe error message can help diagnose errors.\n\nHere, “invalid” means that the syntax of the manifest file doesn’t follow the rules documented on this page.\n\nIf your manifest is valid but it’s not working the way you want it to, turning up the verbosity with&#96;-v&#96; is a good way to get detailed information about what decisions west made about your manifest, and why:\n\n&#96;&#96;&#96;\nwest -v manifest --validate\n\n&#96;&#96;&#96;\n\n### Get the manifest path\n\nThe&#96;--path&#96; action prints the path to the top level manifest file:\n\n&#96;&#96;&#96;\nwest manifest --path\n\n&#96;&#96;&#96;\n\nThe output is something like&#96;/path/to/workspace/west.yml&#96;. The path format depends on your operating system.",
+  "url": "https://docs.zephyrproject.org/latest/develop/west/manifest.html"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+roba-layer-statusプロジェクトにリモートURLが設定されておらず、デフォルトリモートも未設定のためエラーになっている。
+
+Westではプロジェクトに`url`か`remote`が必要だが、ローカルプロジェクトには`repo-path`が使える。ZMKではカスタムモジュールをconfigディレクトリに置くか、GitHubのforkをURLで指定するのが一般的だ。
+
+west.yml にプロジェクトを追加せず、config/boards/ に直接配置するか、ZMK_EXTRA_MODULES を使う方法もある。CI の設定では ZMK_EXTRA_MODULES がすでにリポジトリ全体を指している。モジュールに zephyr/module.yml があると、自動的に発見される可能性がある。
+
+ZMKのドキュメントを確認したところ、ユーザー設定のリポジトリ内にモジュールを配置すると自動的に追加される仕様がある。そのため、roba-layer-statusをwest.ymlから削除し、config/modules/配下に配置すれば解決する可能性がある。
+
+ZMK_EXTRA_MODULES はリポジトリルートを指している。config/boards/ のようなサブディレクトリではなく、ルートディレクトリ全体を参照する。モジュールを config/modules/ 配下に配置しても、この引数がルートを基準に動作するため、自動検出が効かない可能性がある。
+
+west.yml から roba-layer-status を削除し、ZMK_EXTRA_MODULES による自動検出に任せるのが最も簡潔な修正だ。west.yml に repo-path を使う方法も検討している。
+
+manifest に `defaults.remote` や `remotes` を設定して `repo-path` を使う方法も考えたが、west.yml の構造が複雑になりすぎるため、シンプルな削除案に戻っている。
+
+ZMKの推奨方法を確認したところ、同じリポジトリ内のモジュールは west.yml に追加する必要がある。しかし west は url または remote を要求するため、新しい west では import: false と url が必要かもしれない。別の方法として、layer status を roBa シールドに直接統合し、別モジュール化を避けることも検討している。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "C:\\Users\\yngst\\.cursor\\projects\\c-dev-zmk-config-roBa\\agent-tools\\b42963c7-5751-43ac-b208-06bb3d1e06c0.txt",
+  "pattern": "repo-path|no remote"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "C:\\Users\\yngst\\.cursor\\projects\\c-dev-zmk-config-roBa\\agent-tools\\b42963c7-5751-43ac-b208-06bb3d1e06c0.txt",
+  "pattern": "repo-path|no remote",
+  "topFiles": [
+    {
+      "matchCount": 7,
+      "uri": "..\\..\\Users\\yngst\\.cursor\\projects\\c-dev-zmk-config-roBa\\agent-tools\\b42963c7-5751-43ac-b208-06bb3d1e06c0.txt"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 7
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "zmk config west.yml local module path without url ZMK_EXTRA_MODULES"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [Where to put drivers? · Issue #2550 · zmkfirmware/zmk](https://github.com/zmkfirmware/zmk/issues/2550)\n2. [docs/docs/development/local-toolchain/build-flash.mdx at ad7fbfef · zmkfirmware/zmk](https://github.com/zmkfirmware/zmk/blob/ad7fbfef/docs/docs/development/local-toolchain/build-flash.mdx)\n3. [Building and Flashing | ZMK Firmware](https://zmk.dev/docs/development/local-toolchain/build-flash)\n4. [Update development docs with new module instructions · Issue #2279 · zmkfirmware/zmk · GitHub](https://github.com/zmkfirmware/zmk/issues/2279)\n5. [Module Creation | ZMK Firmware](https://zmk.dev/docs/development/module-creation)\n\nSynthesis:\nTo use a local module without a URL, you do not modify the west.yml file. Instead, you pass the absolute path of the module folder directly to the build command using the ZMK_EXTRA_MODULES variable [1][2][3].\n\nRun your build command as follows, replacing the path with the actual location of your module:\n\nwest build -b your_board_name -- -DZMK_EXTRA_MODULES=\"/absolute/path/to/your/module\"\n\nIf you are using multiple modules, separate them with a semicolon [4][2][3]:\n\nwest build -b your_board_name -- -DZMK_EXTRA_MODULES=\"/path/to/module1;/path/to/module2\"\n\nEnsure the path points to the root directory of the module (where the zephyr/module.yml file is located) [4][5][2].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003eWhere to put drivers? · Issue #2550 · zmkfirmware/zmk\u003c/title\u003e\n\u003curl\u003ehttps://github.com/zmkfirmware/zmk/issues/2550\u003c/url\u003e\n\u003ccontent\u003e\u003e I think I found a way to use the extra modules ref for that.\n\u003e \n\u003e I have basically dumped that repo into an arbitrary folder &#96;${my-config}/drivers/pmw3610&#96; and then referred to that as an external zephyr module in the CLI args like so\n\u003e \n\u003e &#96;&#96;&#96;\n\u003e west build -d build/right -p -b nice_nano_v2 -- \\\n\u003e -DSHIELD=\"little_wing_right\" \\\n\u003e -DZMK_CONFIG=\"/workspaces/zmk-config/config\" \\\n\u003e -DZMK_EXTRA_MODULES=\"/workspaces/zmk-config;/workspaces/zmk-config/drivers/pmw3610\"\n\u003e &#96;&#96;&#96;\n\u003e \n\u003e the &#96;/workspaces/zmk-config&#96; is my docker mount for my user config.\n\u003e \n\u003e it works, but it sort of feels hacky. is there a more officially blessed way to do this?\n\u003e \n\u003e thank you\n...\n\u003e You found the right way, they are \"modules\" and hence when building locally (where the &#96;config/west.yml&#96; manifest isn't used) you have to use the &#96;-DZMK_EXTRA_MODULES&#96; arg to pass them to the build command. This is the official way that is documented at https://zmk.dev/docs/development/local-toolchain/build-flash#building-with-external-modules.\n\u003e \n\u003e If you want it more proper, you probably want to mount the module as an additional volume rather than putting it in a subfolder in your config. But that's a Docker-specific issue.\n...\n\u003e To expand on the above answer, you could also adjust the west configuration to prevent you from needing to input those values every time (though I don't know about the interaction with docker at all). See https://docs.zephyrproject.org/3.5.0/develop/west/build-flash-debug.html#permanent-cmake-arguments\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"2\"\u003e\n\u003ctitle\u003edocs/docs/development/local-toolchain/build-flash.mdx at ad7fbfef · zmkfirmware/zmk\u003c/title\u003e\n\u003curl\u003ehttps://github.com/zmkfirmware/zmk/blob/ad7fbfef/docs/docs/development/local-toolchain/build-flash.mdx\u003c/url\u003e\n\u003ccontent\u003eYou can also add permanent CMake arguments to &#96;west build&#96; by using the\n[&#96;west config&#96;](https://docs.zephyrproject.org/3.5.0/develop/west/config.html#west-config-cmd)\ncommand. These are invoked whenever a new build system is generated. To add\npermanent arguments, set the &#96;build.cmake-args&#96; configuration option.\n...\n&#96;&#96;&#96;sh\nwest config build.cmake-args \\\n  -- \"-DSHIELD=kyria_left -DZMK_CONFIG=/absolute/path/to/zmk-config\"\n...\n### Building With\n...\nZMK supports loading additional boards, shields, code, etc. from [external ZMK modules](../../features/modules.mdx), facilitating out-of-tree management and versioning independent of the ZMK repository. To build with any additional modules, use the &#96;ZMK_EXTRA_MODULES&#96; define added to your &#96;west build&#96; command.\n...\nFor instance, building with the &#96;my-vendor-keebs-module&#96; checked out to your documents directory, you would build like:\n...\n&#96;&#96;&#96;\nwest build -b nice_nano_v2 -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES=\"C:/Users/myUser/Documents/my-vendor-keebs-module\"\n&#96;&#96;&#96;\n...\ne.g.:\n...\n&#96;&#96;&#96;\nwest build\n...\nb nice_nano_v2 --\n...\n### Building from &#96;zmk-config&#96; Folder\n...\nInstead of building .uf2 files using the default keymap and config files, you\ncan build using files from your [&#96;zmk-config&#96; folder](../../user-setup.mdx#github-repo)\nby adding &#96;-DZMK_CONFIG=\"C:/the/absolute/path/config\"&#96; to your &#96;west build&#96;\ncommand. **Notice that this path should point to the folder labeled &#96;config&#96;\nwithin your &#96;zmk-config&#96; folder.**\n...\nFor instance, building kyria firmware from a user &#96;myUser&#96;'s &#96;zmk-config&#96; folder\non Windows may look something like this:\n...\n&#96;&#96;&#96;sh\nwest build -b nice_nano -- -DSHIELD=kyria_left \\\n  -DZMK_CONFIG=\"C:/Users/myUser/Documents/Github/zmk-config/config\"\n&#96;&#96;&#96;\n...\n:::warning\nIf your config is also a [module](../../features/modules.mdx), then you should\nalso add the root (the folder in which the &#96;zephyr&#96; folder is found) of your\n&#96;zmk-config&#96; as an [external module to build with](#building-with-external-modules).\n:::\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"3\"\u003e\n\u003ctitle\u003eBuilding and Flashing | ZMK Firmware\u003c/title\u003e\n\u003curl\u003ehttps://zmk.dev/docs/development/local-toolchain/build-flash\u003c/url\u003e\n\u003ccontent\u003e### Building With\n...\nZMK supports loading additional boards, shields, code, etc. from external ZMK modules, facilitating out-of-tree management and versioning independent of the ZMK repository. To build with any additional modules, use the&#96;ZMK_EXTRA_MODULES&#96; define added to your&#96;west build&#96; command.\n...\nFor instance, building with the&#96;my-vendor-keebs-module&#96; checked out to your documents directory, you would build like:\n...\n&#96;&#96;&#96;text\nwest build -b nice_nano -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES=\"C:/Users/myUser/Documents/my-vendor-keebs-module\"\n...\na semicolon, e.g.:\n...\n&#96;&#96;&#96;text\nwest build\n...\nb nice_nano --\n...\nDSHIELD=vendor_shield\n...\n:/Users/\n...\nUser/Documents/my\n...\nvendor-keebs\n...\nUser/Documents/\n...\n### Building from zmk-config Folder​\n...\nInstead of building .uf2 files using the default keymap and config files, you can build using files from your zmk-config folder by adding&#96;-DZMK_CONFIG=\"C:/the/absolute/path/config\"&#96; to your&#96;west build&#96; command. Notice that this path should point to the folder labeled&#96;config&#96; within your&#96;zmk-config&#96; folder.\n...\nFor instance, building kyria firmware from a user&#96;myUser&#96;'s&#96;zmk-config&#96; folder on Windows may look something like this:\n...\n&#96;&#96;&#96;sh\nwest build -b nice_nano -- -DSHIELD=kyria_left \\  -DZMK_CONFIG=\"C:/Users/myUser/Documents/Github/zmk-config/config\"\n&#96;&#96;&#96;\n...\nIf your config is also a module, then you should also add the root (the folder in which the&#96;zephyr&#96; folder is found) of your&#96;zmk-config&#96; as an external module to build with.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"4\"\u003e\n\u003ctitle\u003eUpdate development docs with new module instructions · Issue #2279 · zmkfirmware/zmk · GitHub\u003c/title\u003e\n\u003curl\u003ehttps://github.com/zmkfirmware/zmk/issues/2279\u003c/url\u003e\n\u003ccontent\u003e## 1. zmk-config is a module now\n...\nIt's now a zephyr module. This means the&#96;boards/&#96; directory is in within&#96;zmk-config/boards/&#96; now. Previously it was in&#96;zmk-config/config/boards/&#96;.\n...\nThis means that if you want to build a firmware with a custom shield, then you need to use&#96;-DZMK_EXTRA_MODULES&#96; in the command like this now:\n...\n&#96;&#96;&#96;\nwest build -d build/tc/right -p -b nice_nano_v2 -- -DZMK_EXTRA_MODULES=\"/workspaces/zmk-config/\" -DZMK_CONFIG=\"/workspaces/zmk-config/config/\" -DSHIELD=\"think_corney_right nice_view\"\n&#96;&#96;&#96;\n...\nNotice that&#96;DZMK_EXTRA_MODULES&#96; module points to the&#96;zmk-config/&#96; directory and the&#96;DZMK_CONFIG&#96; to the config subdirectory&#96;zmk-config/config/&#96;.\n...\nIf you want to include other extra modules, you have to separate them with a semicolon like this:&#96;-DZMK_EXTRA_MODULES=\"/workspaces/zmk-config/;/workspaces/zmk-modules/kb_zmk_ps2_mouse_trackpoint_driver/\"&#96;\n...\n&#96;&#96;&#96;\n{\n  \"name\": \"Z\n...\n[...]\n...\nmounts\": [\n    \"type=volume,source=zmk-root-user,\n...\nsource=z\n...\n-config,target=/workspaces/zmk-config\n...\nvolume,source=zmk-modules,target=/workspaces/\n...\nmk-modules\n...\nWorkspaceFolder}/\n...\nWorkspaceFolder}/\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"5\"\u003e\n\u003ctitle\u003eModule Creation | ZMK Firmware\u003c/title\u003e\n\u003curl\u003ehttps://zmk.dev/docs/development/module-creation\u003c/url\u003e\n\u003ccontent\u003eIf&#96;zephyr/module.yml&#96; has anything listed under&#96;depends&#96;, then you should also define a west manifest file. While the&#96;zephyr/module.yml&#96; file defines which modules your module depends on, the west manifest file defines where said modules are found. This then allows automatic tooling to fetch the modules when building firmware. If&#96;depends&#96; is not present in&#96;zephyr/module.yml&#96;, then this file (named&#96;west.yml&#96; in the template) should be removed.\n...\nIt is recommended that you place the manifest file at the root of your module, though you can place it elsewhere. Be sure to note in your&#96;README.md&#96; that your module uses dependencies, so that users import these correctly. Below is an example&#96;west.yml&#96; file for a user that would be using your module, with the necessary&#96;import&#96; field if the module has dependencies:\n...\nwest.yml\n...\n&#96;&#96;&#96;yaml\nmanifest:  remotes:    - name: remote-name      url-base: https://github.com/remote-name  projects:    # Together with the above defined remote, this refers to a module located at    # https://github.com/remote-name/repository-name    - name: repository-name      remote: remote-name      # This points to a west manifest file in the remote module for further imports      import: west.yml\n&#96;&#96;&#96;\n...\nNote that the&#96;include&#96; and&#96;src&#96; folders are not mandated by the module system, and all of these can be positioned anywhere in your module's filetree if you adjust the&#96;zephyr/module.yml&#96; accordingly. The&#96;west.yml&#96; file is not commonly present in any of the types.\u003c/content\u003e\n\u003c/result\u003e",
+      "title": "Web search results"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+roba-layer-status を west.yml から削除する。west ではプロジェクトに url や remote が必要だ。
+
+代わりに build.yaml の ZMK_EXTRA_MODULES でモジュールパスを指定する。roBa_R の cmake-args に `${CMAKE_SOURCE_DIR}/../config/modules/roba-layer-status` を追加する。CI のパスが変わる可能性があるため、相対パターンの方がよい。
+
+モジュールをリポジトリルートの `modules/` 配下に配置する案も検討している。ZMK_EXTRA_MODULES はリポジトリルートのみを指すようだ。ZMK がそのパス以下を再帰的にスキャンする可能性がある。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
+
+Directory: **c:\dev\zmk-config-roBa** (2 files)
+
+| File |
+|------|
+| `../.\config\modules\roba-layer-status\zephyr\module.yml` |
+| `../.\zephyr\module.yml` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\build.yaml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\zephyr\module.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **c:\dev\zmk-config-roBa\zephyr** (1 file)
+
+| File |
+|------|
+| `../zephyr/module.yml` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+リポジトリのルートにzephyrモジュールがあるが、カスタムCコード用のcmakeやkconfig設定が不足している。
+
+west.ymlからroba-layer-statusを削除する。既存のzephyr/module.ymlにcmakeとkconfigを追加する方法を検討している。
+
+zephyrモジュールに複数のcmakeルートを持たせるのは通常できない。カスタムCソースをルートモジュールに直接配置する方法も検討している。
+
+build.yamlのcmake-argsでZMK_EXTRA_MODULESにカスタムモジュールパスをセミコロン区切りで追加する方法を検討している。GitHub Actionsのワークフローでこの引数が自動的に適用される可能性がある。
+
+build.yamlのcmake-argsはデフォルト値を置き換える可能性があるため、安全な方法として既存のzephyrルートモジュールに統合する方針に切り替えた。ルートにCMakeLists.txtとKconfigを作成し、layer statusのcmakeとkconfigを統合する方法を検討している。
+
+zephyr/module.ymlにconfig/modules/roba-layer-statusのcmakeとkconfigを直接指定するシンプルな方法を確定した。zephyrはモジュールディレクトリ（リポジトリルート）からの相対パスを解釈するため、サブディレクトリへのパス指定が可能だ。
+
+サブディレクトリ内のzephyr/module.ymlを削除して、親モジュールからのみ参照させる。west.ymlからroba-layer-statusを削除し、ルートのzephyr/module.ymlにcmakeとkconfigのパスを追加する。ZMK_EXTRA_MODULES経由でルートモジュールが読み込まれることを確認した。</details></think>
+
+_**Agent (default)**_
+
+原因は `west.yml` の書き方です。`roba-layer-status` に `url` がなく west が拒否しています。`west.yml` から外し、既存のルート `zephyr/module.yml` に統合します。
+
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\zephyr\module.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\config\west.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\dev\zmk-config-roBa\zephyr\module.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="delete_file">
+<details><summary>Tool use: **delete_file**</summary>
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="delete_file"><details>
+<summary>Tool use: **delete_file**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\CMakeLists.txt</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\Kconfig</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\modules\roba-layer-status\src\layer_status_ble_hid.c</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "ZMK_EXTRA_MODULES|module\\.yml"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "ZMK_EXTRA_MODULES|module\\.yml",
+  "topFiles": [
+    {
+      "matchCount": 11,
+      "uri": ".\\.specstory\\history\\2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\.specstory\\history\\2026-05-08_11-06-52Z-roba-keyboard-configuration-and-llm-integration.md"
+    },
+    {
+      "matchCount": 17,
+      "uri": ".\\.specstory\\history\\2026-02-07_06-19-23Z-キーボードレイアウトの修正依頼.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".\\.specstory\\history\\2026-04-19_10-12-40Z-trackball-performance-investigation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\.specstory\\history\\2026-03-07_02-27-06Z-windows-30.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".\\.specstory\\history\\2026-03-06_11-43-32Z-claudecode-claudecode-claudecode-claudecode.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\.specstory\\history\\2026-02-27_09-27-44Z-robaish-windows11-bluetooth-bluetooth.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\.specstory\\history\\2026-02-24_10-43-11Z-roba-roba-roba.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".\\troubleshooting_windows_ble.md"
+    }
+  ],
+  "totalFiles": 9,
+  "totalMatches": 39
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+修正は問題なさそうだ。ZMK_EXTRA_MODULES がリポジトリルートを指しており、zephyr/module に正しく到達している。</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\dev\zmk-config-roBa\config\west.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "ZMK_LAYER_STATUS"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "ZMK_LAYER_STATUS",
+  "topFiles": [
+    {
+      "matchCount": 12,
+      "uri": ".specstory\\history\\2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "config\\modules\\roba-layer-status\\CMakeLists.txt"
+    },
+    {
+      "matchCount": 1,
+      "uri": "config\\boards\\shields\\roBa\\roBa_R.conf"
+    },
+    {
+      "matchCount": 1,
+      "uri": "config\\modules\\roba-layer-status\\Kconfig"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 15
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "c:\dev\zmk-config-roBa" && git status && git diff --stat</summary>
+
+```bash
+cd "c:\dev\zmk-config-roBa" && git status && git diff --stat
+```
+
+```
+�����ꏊ C:\Users\yngst\AppData\Local\Temp\ps-script-6405b108-aeca-4cf7-8cd6-0fc058f72e8a.ps1:122 ����:29
++ cd "c:\dev\zmk-config-roBa" &amp;&amp; git status &amp;&amp; git diff --stat
++                             ~~
+�g�[�N�� '&amp;&amp;' �́A���̃o�[�W�����ł͗L���ȃX�e�[�g�����g��؂�ł͂���܂���B
+�����ꏊ C:\Users\yngst\AppData\Local\Temp\ps-script-6405b108-aeca-4cf7-8cd6-0fc058f72e8a.ps1:122 ����:43
++ cd "c:\dev\zmk-config-roBa" &amp;&amp; git status &amp;&amp; git diff --stat
++                                           ~~
+�g�[�N�� '&amp;&amp;' �́A���̃o�[�W�����ł͗L���ȃX�e�[�g�����g��؂�ł͂���܂���B
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "c:\dev\zmk-config-roBa"; git status; git diff --stat</summary>
+
+```bash
+cd "c:\dev\zmk-config-roBa"; git status; git diff --stat
+```
+
+```
+On branch main
+Your branch is up to date with 'yngstmsk/main'.
+
+Changes not staged for commit:
+  (use "git add/rm &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   .specstory/history/2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md
+	modified:   .specstory/statistics.json
+	deleted:    config/modules/roba-layer-status/zephyr/module.yml
+	modified:   config/west.yml
+	modified:   zephyr/module.yml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ ...59-59Z-bluetooth-connection-issues-with-roba.md | 462 ++++++++++++++++++++-
+ .specstory/statistics.json                         |   8 +-
+ config/modules/roba-layer-status/zephyr/module.yml |   4 -
+ config/west.yml                                    |   2 -
+ zephyr/module.yml                                  |   2 +
+ 5 files changed, 467 insertions(+), 11 deletions(-)
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+修正を適用した。ZMKのドキュメントやサンプルで、module.ymlとcmakeサブディレクトリの正しい方法を確認している。
+
+3つのジョブがすべて失敗したのは、west initが失敗してコンパイルが進まなかったためだった。west.ymlの不正なprojectエントリーを削除し、ZMK_EXTRA_MODULESに設定したパスにcmake/kconfigを追加してlayer statusモジュールを登録するよう修正した。コミットとプッシュを依頼するか説明する。
+
+kconfigパスの動作を再確認している。同じmodule.ymlにboard_rootとcmakeを両方含めるパターンが他のZMK設定で使われたことがあるか調べている。cmake追加がボード検出に影響しないか懸念しているが、settings.board_rootは独立しているはずだ。
+
+CMakeLists.txtにzephyr_link_libraries(zmk)が必要か確認している。元のmaatthcモジュールではzephyr_library()とzephyr_include_directories()のみだった。現状の実装が不足している可能性がある。</details></think>
+
+_**Agent (default)**_
+
+ZMK のモジュール登録方法を確認し、ビルドが通る構成か検証します。
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "ZMK zephyr module.yml cmake kconfig board_root ZMK_EXTRA_MODULES user config"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [docs/docs/development/local-toolchain/build-flash.mdx at ad7fbfef · zmkfirmware/zmk](https://github.com/zmkfirmware/zmk/blob/ad7fbfef/docs/docs/development/local-toolchain/build-flash.mdx)\n2. [Update development docs with new module instructions · Issue #2279 · zmkfirmware/zmk · GitHub](https://github.com/zmkfirmware/zmk/issues/2279)\n3. [Module Creation | ZMK Firmware](https://zmk.dev/docs/development/module-creation)\n4. [Modules (External projects) — Zephyr Project Documentation](https://docs.zephyrproject.org/latest/develop/modules.html)\n5. [Modules | ZMK Firmware](https://zmk.dev/docs/features/modules)\n\nSynthesis:\nTo build ZMK with external modules, include their paths in the ZMK_EXTRA_MODULES CMake parameter during the west build command [1][2]. Multiple modules must be separated by a semicolon [1][2]. If your ZMK config is itself a module, you must add its root path to ZMK_EXTRA_MODULES [1][2].\n\nA ZMK module requires a zephyr/module.yml file at its root [3][4]. This file defines the module name and build settings like board_root, which points to the folder containing your boards or shields [3][4]. Use west build -b \u003cboard\u003e -- -DZMK_EXTRA_MODULES=\"path/to/module\" to integrate them [1].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003edocs/docs/development/local-toolchain/build-flash.mdx at ad7fbfef · zmkfirmware/zmk\u003c/title\u003e\n\u003curl\u003ehttps://github.com/zmkfirmware/zmk/blob/ad7fbfef/docs/docs/development/local-toolchain/build-flash.mdx\u003c/url\u003e\n\u003ccontent\u003eThis is done by\n...\nafter the &#96;west build&#96; command and listing the CMake\narguments\n...\n. The previous section shows one\n...\nof this with\n&#96;-DSHIELD=kyria_left\n...\nconfig flags:\n...\nYou can also add permanent CMake arguments to &#96;west build&#96; by using the\n[&#96;west config&#96;](https://docs.zephyrproject.org/3.5.0/develop/west/config.html#west-config-cmd)\ncommand. These are invoked whenever a new build system is generated. To add\npermanent arguments, set the &#96;build.cmake-args&#96; configuration option.\n...\n&#96;&#96;&#96;sh\nwest\n...\n-args \\\n  -- \"-DSHIELD=kyria_left -DZ\n...\nabsolute/path/\n...\nmk-config\"\n...\n### Building With External Modules\n...\nZMK supports loading additional boards, shields, code, etc. from [external ZMK modules](../../features/modules.mdx), facilitating out-of-tree management and versioning independent of the ZMK repository. To build with any additional modules, use the &#96;ZMK_EXTRA_MODULES&#96; define added to your &#96;west build&#96; command.\n...\n&#96;&#96;&#96;\nwest build -b nice_nano_v2 -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES=\"C:/Users/myUser/Documents/my-vendor-keebs-module\"\n&#96;&#96;&#96;\n...\n_nano_\n...\n### Building from &#96;zmk-config&#96; Folder\n...\nInstead of building .uf2 files using the default keymap and config files, you\ncan build using files from your [&#96;zmk-config&#96; folder](../../user-setup.mdx#github-repo)\nby adding &#96;-DZMK_CONFIG=\"C:/the/absolute/path/config\"&#96; to your &#96;west build&#96;\ncommand. **Notice that this path should point to the folder labeled &#96;config&#96;\nwithin your &#96;zmk-config&#96; folder.**\n...\nFor instance, building kyria firmware from a user &#96;myUser&#96;'s &#96;zmk-config&#96; folder\non Windows may look something like this:\n...\n&#96;&#96;&#96;sh\nwest build -b nice_nano -- -DSHIELD=kyria_left \\\n  -DZMK_CONFIG=\"C:/Users/myUser/Documents/Github/zmk-config/config\"\n...\n:::warning\nIf your config is also a [module](../../features/modules.mdx), then you should\nalso add the root (the folder in which the &#96;zephyr&#96; folder is found) of your\n&#96;zmk-config&#96; as an [external module to build with](#building-with-external-modules).\n:::\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"2\"\u003e\n\u003ctitle\u003eUpdate development docs with new module instructions · Issue #2279 · zmkfirmware/zmk · GitHub\u003c/title\u003e\n\u003curl\u003ehttps://github.com/zmkfirmware/zmk/issues/2279\u003c/url\u003e\n\u003ccontent\u003e## 1. zmk-config is a module now\n...\nIt's now a zephyr module. This means the&#96;boards/&#96; directory is in within&#96;zmk-config/boards/&#96; now. Previously it was in&#96;zmk-config/config/boards/&#96;.\n...\nThis means that if you want to build a firmware with a custom shield, then you need to use&#96;-DZMK_EXTRA_MODULES&#96; in the command like this now:\n...\n&#96;&#96;&#96;\nwest build -d build/tc/right -p -b nice_nano_v2 -- -DZMK_EXTRA_MODULES=\"/workspaces/zmk-config/\" -DZMK_CONFIG=\"/workspaces/zmk-config/config/\" -DSHIELD=\"think_corney_right nice_view\"\n&#96;&#96;&#96;\n...\nNotice that&#96;DZMK_EXTRA_MODULES&#96; module points to the&#96;zmk-config/&#96; directory and the&#96;DZMK_CONFIG&#96; to the config subdirectory&#96;zmk-config/config/&#96;.\n...\nIf you want to include other extra modules, you have to separate them with a semicolon like this:&#96;-DZMK_EXTRA_MODULES=\"/workspaces/zmk-config/;/workspaces/zmk-modules/kb_zmk_ps2_mouse_trackpoint_driver/\"&#96;\n...\nNext, edit in your zmk clone&#96;zmk/.devcontainer/devcontainer.json&#96;:\n...\n&#96;&#96;&#96;\n{\n  \"name\": \"ZMK Development\",\n  [...]\n  \"mounts\": [\n    \"type=volume,source=zmk-root-user,target=/root\",\n    \"type=volume,source=zmk-config,target=/workspaces/zmk-config\",\n+  \"type=volume,source=zmk-modules,target=/workspaces/zmk-modules\",\n    \"type=volume,source=zmk-zephyr,target=${containerWorkspaceFolder}/zephyr\",\n    \"type=volume,source=zmk-zephyr-modules,target=${containerWorkspaceFolder}/modules\",\n    \"type=volume,source=zmk-zephyr-tools,target=${containerWorkspaceFolder}/tools\"\n  ],\n  [...]\n}\n&#96;&#96;&#96;\n...\nThe container will continue mounting the&#96;zmk-modules/&#96; volume as long as you don't rebuild it.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"3\"\u003e\n\u003ctitle\u003eModule Creation | ZMK Firmware\u003c/title\u003e\n\u003curl\u003ehttps://zmk.dev/docs/development/module-creation\u003c/url\u003e\n\u003ccontent\u003eYour module name goes in the&#96;zephyr/module.yml&#96; file:\n...\nNext, you need to define the options to build your module. These also go into&#96;zephyr/module.yml&#96;, as children of the&#96;build&#96; property. Commonly used options are:\n...\n- &#96;board_root&#96; points to the parent directory of a&#96;boards&#96; directory, which contains additional board/shield definitions.\n- &#96;dts_root&#96; points to the parent directory of a&#96;dts&#96; directory, which contains additional devicetree bindings.\n- &#96;snippet_root&#96; points to the parent directory of a&#96;snippets&#96; directory, which contains snippets.\n...\nwest manifest file\n...\n&#96;zephyr/module.yml\n...\nnamed&#96;west.yml&#96; in the template) should be\n...\n| &#96;keyboard&#96; | &#96;component&#96; | &#96;behavior&#96; | &#96;driver&#96; | &#96;feature&#96; | &#96;vfx&#96; |\n| --- | --- | --- | --- | --- | --- |\n| &#96;boards/&#96; | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |\n| &#96;dts/&#96; | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |\n| &#96;CMakeLists.txt&#96; | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |\n| &#96;Kconfig&#96; | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |\n| &#96;include/&#96; | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |\n| &#96;src/&#96; | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |\n| &#96;snippets/&#96; | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |\n...\n| File or Folder | Description |\n| --- | --- |\n| &#96;boards/&#96; | Folder containing definitions for boards, shields and interconnects |\n| &#96;dts/&#96; | Folder containing devicetree bindings and includes with devicetree nodes (.dtsi) |\n| &#96;CMakeLists.txt&#96; | CMake configuration to specify source files to build |\n| &#96;Kconfig&#96; | Kconfig file for the module |\n| &#96;include/&#96; | Folder for C header files |\n| &#96;src/&#96; | Folder for C source files |\n| &#96;snippets/&#96; | Folder for snippets |\n...\nIf your module requires adding drivers to existing subsystems in modules, you will need to use the&#96;zephyr_library_amend()&#96; CMake command, which requires you to have a specific directory structure. See zephyr/cmake/modules/extensions.cmake for the definition and some documentation in the comments, with an example in petejohanson/ec-support-zmk-module.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"4\"\u003e\n\u003ctitle\u003eModules (External projects) — Zephyr Project Documentation\u003c/title\u003e\n\u003curl\u003ehttps://docs.zephyrproject.org/latest/develop/modules.html\u003c/url\u003e\n\u003ccontent\u003eThe build system variable ZEPHYR_MODULES is a CMake list of absolute paths to the directories containing Zephyr modules. These modules contain&#96;CMakeLists.txt&#96; and&#96;Kconfig&#96; files describing how to build and configure them, respectively. Module&#96;CMakeLists.txt&#96; files are added to the build using CMake’s add_subdirectory() command, and the&#96;Kconfig&#96; files are included in the build’s Kconfig menu tree.\n...\nIf you have west installed, you don’t need to worry about how this variable is defined unless you are adding a new module. The build system knows how to use west to set ZEPHYR_MODULES. You can add additional modules to this list by setting the EXTRA_ZEPHYR_MODULES CMake variable or by adding a EXTRA_ZEPHYR_MODULES line to&#96;.zephyrrc&#96;(See the section on Environment Variables for more details). This can be useful if you want to keep the list of modules found with west and also add your own. If EXTRA_ZEPHYR_MODULES is set in multiple places, for example both as an environment variable and as a CMake variable, the final list of additional modules will be the merged result of all sources.\n...\nA module can be described using a file named&#96;zephyr/module.yml&#96;. The format of&#96;zephyr/module.yml&#96; is described in the following:\n...\nWhen a module has a&#96;module.yml&#96; file, it will automatically be included into the Zephyr build system. The path to the module is then accessible through Kconfig and CMake variables.\n...\nCMake, the variable&#96;ZEPHY\n...\nNAME\u003e_\n...\n_\u003cMODULE_NAME\u003e\n...\n&#96; contains the absolute path to the directory containing the&#96;CMakeLists.txt&#96; file that is included into CMake build system. This variable’s value is empty if the module.yml file does not specify a CMakeLists.txt.\n...\n&#96;board_root&#96;: Contains additional boards that are available to the build system. Additional boards must be located in a&#96;\u003cboard_root\u003e/boards&#96; folder.\n...\n&#96;module_ext_root&#96;: Contains&#96;CMakeLists.txt&#96; and&#96;Kconfig&#96; files for Zephyr modules, see also Module integration files (external).\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"5\"\u003e\n\u003ctitle\u003eModules | ZMK Firmware\u003c/title\u003e\n\u003curl\u003ehttps://zmk.dev/docs/features/modules\u003c/url\u003e\n\u003ccontent\u003eZMK makes use of Zephyr modules to include additional source code or configuration files into its build. You can think of them as similar to plugins or themes. The most common uses of this feature are:\n...\n- A single ZMK config maintained by the user, containing the&#96;.conf&#96; and&#96;.keymap&#96; files for one or multiple keyboards. This is also where files from ZMK or modules should be overridden/modified, if there is a need.\n- Any number of ZMK modules, maintained by the module's owner. Some modules may contain multiple keyboards or functionalities. If all of your keyboards and functionalities are internal to ZMK's tree, then no modules are necessary.\n...\n- The ZMK firmware itself\n...\nWhen using GitHub Actions to build ZMK, adding modules is as simple as modifying the&#96;west.yml&#96; found in your&#96;zmk-config&#96;'s&#96;config&#96; directory. The recommended way of doing so is:\n...\n1. Find the URL base (the parent URL) for the module and add it as an entry to the remotes.\n2. Add the module as an entry to the projects. Aside from the mandatory&#96;name&#96;,&#96;remote&#96;, and the commonly used&#96;revision&#96; properties, take note of the&#96;import&#96; property under&#96;projects&#96;. Some modules may have other modules as dependencies. This property allows the specifying of an additional west manifest file found in the tree of the module, which will automatically import all dependencies.\n...\n&#96;&#96;&#96;yaml\nmanifest:  remotes:    - name: zmkfirmware      url-base: https://github.com/zmkfirmware  projects:    - name: zmk      remote: zmkfirmware      revision: main      import: app/west.yml  self:    path: config\n...\nWhen using GitHub Actions to build ZMK, once you have obtained the correct URL, you'll need to modify the&#96;west.yml&#96; file similarly to Building With Modules. Add the remote for the branch like in said section. The difference is that you will need to change the selected remote and revision (or branch) for the&#96;zmk&#96; project.\n...\nmanifest:  remotes:    - name:\n...\n: https://github\n...\nimport: app\n...\npath:\u003c/content\u003e\n\u003c/result\u003e",
+      "title": "Web search results"
+    },
+    {
+      "chunk": "Full page text written to file: C:\\Users\\yngst\\.cursor\\projects\\c-dev-zmk-config-roBa\\agent-tools\\b15e3f9e-9fb2-4ffe-ab32-b31818a87e68.txt\nSize: 41.7 KB, 855 lines\nUse shell / grep / read_file on this path to inspect the page; no follow-up fetch is needed.",
+      "title": "Modules (External projects) — Zephyr Project Documentation",
+      "url": "https://docs.zephyrproject.org/latest/develop/modules.html"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "cmake:.*\\n.*kconfig:"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\dev\\zmk-config-roBa",
+  "pattern": "cmake:.*\\n.*kconfig:",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": ".\\zephyr\\module.yml"
+    },
+    {
+      "matchCount": 745,
+      "uri": ".\\.specstory\\history\\2026-05-09_00-59-59Z-bluetooth-connection-issues-with-roba.md"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 747
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+修正は確実だ。ZMK_EXTRA_MODULESがリポジトリルートを指しているため、ルートのzephyr/module.ymlにcmake/kconfigパスを追加するアプローチは正しい。</details></think>
+
+_**Agent (default)**_
+
+3ジョブとも同じ原因で落ちていました。**west が `config/west.yml` を読む段階で失敗**しており、コンパイルまで進んでいません。
+
+## 原因
+
+```
+FATAL ERROR: Malformed manifest file: config/west.yml
+Hint: project roba-layer-status has no remote or url and no default remote is set
+```
+
+`roba-layer-status` を `path:` だけで west に登録していましたが、**リモート URL のないローカル専用プロジェクトは west マニフェストに書けません**。
+
+そのため `roBa_right` / `roBa_left` / `settings_reset` の3つすべてが、同じ west init エラーで止まっています。
+
+## 修正内容（ローカルで適用済み）
+
+1. **`config/west.yml`** — `roba-layer-status` エントリを削除（zmk のみに戻す）
+2. **`zephyr/module.yml`** — 既存のルートモジュールに cmake/kconfig を追加  
+   CI は既に `ZMK_EXTRA_MODULES` でリポジトリルートを渡しているので、ここに統合するのが正しいやり方です
+3. **`config/modules/roba-layer-status/zephyr/module.yml`** — 二重登録を避けるため削除
+
+`roBa_R.conf` の `CONFIG_ZMK_LAYER_STATUS_BLE_HID=y` はそのままです。
+
+## 次のステップ
+
+この修正を **commit → push** すれば Actions が再実行されます。west のエラーは解消されるはずです。
+
+コミットと push をこちらで実行しましょうか？
+
+---
+
+_**User**_
+
+一つ前と同じで２回目にエラーが残ってる。ちゃんと直せ
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "c:\dev\zmk-config-roBa"; git log -3 --oneline; git status --short</summary>
+
+```bash
+cd "c:\dev\zmk-config-roBa"; git log -3 --oneline; git status --short
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
 
 </details></tool-use>
