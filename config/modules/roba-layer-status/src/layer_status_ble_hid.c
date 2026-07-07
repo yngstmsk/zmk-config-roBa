@@ -32,7 +32,7 @@ static int layer_status_embedded_listener(const zmk_event_t *eh) {
     struct zmk_hid_keyboard_report *report = zmk_hid_get_keyboard_report();
     report->body._reserved = layer;
 
-    zmk_endpoints_send_report(HID_USAGE_KEY);
+    zmk_endpoint_send_report(HID_USAGE_KEY);
 
     return 0;
 }
