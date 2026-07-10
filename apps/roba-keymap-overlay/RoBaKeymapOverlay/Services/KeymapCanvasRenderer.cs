@@ -14,6 +14,7 @@ public sealed class KeymapCanvasRenderer
     private readonly Canvas _canvas;
     private KeymapLayout? _layout;
     private LayoutBounds? _bounds;
+    private HashSet<string> _pressedLabels = new(StringComparer.OrdinalIgnoreCase);
 
     public KeymapCanvasRenderer(Canvas canvas)
     {
@@ -24,6 +25,11 @@ public sealed class KeymapCanvasRenderer
     {
         _layout = layout;
         _bounds = LayoutScaler.ComputeBounds(layout);
+    }
+
+    public void SetPressedLabels(IEnumerable<string> labels)
+    {
+        _pressedLabels = labels.ToHashSet(StringComparer.OrdinalIgnoreCase);
     }
 
     public void Render(System.Windows.Size availableSize)
@@ -62,14 +68,15 @@ public sealed class KeymapCanvasRenderer
 
         foreach (var key in _layout.Keys.Where(k => k.Visible))
         {
-            keysCanvas.Children.Add(CreateKeyElement(_layout, key));
+            var isPressed = _pressedLabels.Contains(key.Label);
+            keysCanvas.Children.Add(CreateKeyElement(_layout, key, isPressed));
         }
 
         _canvas.Children.Add(keysCanvas);
         _canvas.ClipToBounds = scaleResult.AllowClipping;
     }
 
-    private static UIElement CreateKeyElement(KeymapLayout layout, KeyDefinition key)
+    private static UIElement CreateKeyElement(KeymapLayout layout, KeyDefinition key, bool isPressed)
     {
         var unitW = layout.UnitWidth;
         var unitH = layout.UnitHeight;
@@ -78,12 +85,19 @@ public sealed class KeymapCanvasRenderer
         var w = key.W * unitW - 4;
         var h = key.H * unitH - 4;
 
+        var fill = isPressed
+            ? Color.FromArgb(230, 204, 48, 48)
+            : Color.FromArgb(200, 45, 52, 64);
+        var borderColor = isPressed
+            ? Color.FromArgb(255, 255, 120, 120)
+            : Color.FromArgb(220, 120, 130, 150);
+
         var border = new Border
         {
             Width = w,
             Height = h,
-            Background = new SolidColorBrush(Color.FromArgb(200, 45, 52, 64)),
-            BorderBrush = new SolidColorBrush(Color.FromArgb(220, 120, 130, 150)),
+            Background = new SolidColorBrush(fill),
+            BorderBrush = new SolidColorBrush(borderColor),
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(4),
             IsHitTestVisible = false,

@@ -10,6 +10,7 @@ public sealed class TrayService : IDisposable
     private readonly ToolStripMenuItem _editModeItem;
     private readonly ToolStripMenuItem _opacityUpItem;
     private readonly ToolStripMenuItem _opacityDownItem;
+    private readonly ToolStripMenuItem _syncStatusItem;
     private readonly ToolStripMenuItem _exitItem;
 
     public event EventHandler? EditModeRequested;
@@ -24,6 +25,7 @@ public sealed class TrayService : IDisposable
         var lockItem = new ToolStripMenuItem("ロック", null, (_, _) => LockRequested?.Invoke(this, EventArgs.Empty));
         _opacityUpItem = new ToolStripMenuItem("透明度 +10%", null, (_, _) => OpacityIncreaseRequested?.Invoke(this, EventArgs.Empty));
         _opacityDownItem = new ToolStripMenuItem("透明度 -10%", null, (_, _) => OpacityDecreaseRequested?.Invoke(this, EventArgs.Empty));
+        _syncStatusItem = new ToolStripMenuItem("レイヤー同期: 起動中…") { Enabled = false };
         _exitItem = new ToolStripMenuItem("終了", null, (_, _) => ExitRequested?.Invoke(this, EventArgs.Empty));
 
         _menu = new ContextMenuStrip();
@@ -32,6 +34,8 @@ public sealed class TrayService : IDisposable
         _menu.Items.Add(new ToolStripSeparator());
         _menu.Items.Add(_opacityUpItem);
         _menu.Items.Add(_opacityDownItem);
+        _menu.Items.Add(new ToolStripSeparator());
+        _menu.Items.Add(_syncStatusItem);
         _menu.Items.Add(new ToolStripSeparator());
         _menu.Items.Add(_exitItem);
 
@@ -58,6 +62,16 @@ public sealed class TrayService : IDisposable
     public void SetLockedState(bool isLocked)
     {
         _editModeItem.Enabled = isLocked;
+    }
+
+    public void SetLayerText(string layerText)
+    {
+        _notifyIcon.Text = $"roBa Overlay — {layerText}";
+    }
+
+    public void SetSyncStatus(string status)
+    {
+        _syncStatusItem.Text = status;
     }
 
     public void Dispose()

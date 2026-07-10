@@ -34,6 +34,8 @@ public sealed class AppSettings
     public WindowSettings Window { get; set; } = new();
     public double Opacity { get; set; } = 0.85;
     public bool IsLocked { get; set; } = false;
+    public bool LayerSyncEnabled { get; set; } = true;
+    public string KeyboardDeviceName { get; set; } = "roBa";
 }
 
 public sealed class LayoutBounds

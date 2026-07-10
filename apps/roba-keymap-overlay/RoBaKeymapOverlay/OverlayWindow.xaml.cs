@@ -12,9 +12,13 @@ public partial class OverlayWindow : Window
     private readonly SettingsStore _settingsStore = new();
     private readonly KeymapCanvasRenderer _renderer;
     private readonly TrayService _trayService;
+    private readonly KeyboardPressTracker _pressTracker = new();
+    private readonly RawKeyboardInputListener _rawKeyboardListener = new();
+    private LayerStatusListener? _layerListener;
     private AppSettings _settings;
     private bool _isLocked = true;
     private bool _isLoaded;
+    private int _activeLayer;
 
     public OverlayWindow()
     {
@@ -30,6 +34,10 @@ public partial class OverlayWindow : Window
         _trayService.OpacityDecreaseRequested += (_, _) => AdjustOpacity(-0.1);
         _trayService.ExitRequested += (_, _) => Close();
 
+        _pressTracker.StateChanged += OnPressStateChanged;
+        _rawKeyboardListener.PressedLabelsChanged += OnRawPressedLabelsChanged;
+        _rawKeyboardListener.LayerHintChanged += OnRawLayerHintChanged;
+
         Loaded += OnLoaded;
         Closing += OnClosing;
         SizeChanged += (_, _) =>
@@ -44,15 +52,23 @@ public partial class OverlayWindow : Window
     {
         ApplySettings();
 
-        var layout = LayoutLoader.LoadLayer0();
-        _renderer.SetLayout(layout);
-        RenderKeymap();
+        ShowLayer(0);
+        StartLayerSync();
 
         var helper = new WindowInteropHelper(this);
         helper.EnsureHandle();
 
         var source = HwndSource.FromHwnd(helper.Handle);
         source?.AddHook(WndProc);
+
+        if (_rawKeyboardListener.Register(helper.Handle))
+        {
+            _pressTracker.SetRawLabels(Array.Empty<string>(), "Raw: 受信OK");
+        }
+        else
+        {
+            _pressTracker.SetRawLabels(Array.Empty<string>(), "Raw: 登録失敗");
+        }
 
         Win32WindowHelper.RegisterGlobalHotkey(
             this,
@@ -86,6 +102,93 @@ public partial class OverlayWindow : Window
         OpacityLabel.Text = $"{OpacitySlider.Value:0}%";
 
         SettingsStore.ClampToWorkingArea(this);
+    }
+
+    private void ShowLayer(int layerIndex)
+    {
+        _activeLayer = layerIndex;
+        var layout = LayoutLoader.LoadLayer(layerIndex);
+        _renderer.SetLayout(layout);
+        UpdateLayerUi();
+        RenderKeymap();
+    }
+
+    private void UpdateLayerUi()
+    {
+        var layerText = $"レイヤー {_activeLayer}";
+        TitleBarText.Text = $"roBa Keymap — {layerText} — ドラッグで移動 / 端でリサイズ / Ctrl+Alt+L でロック";
+        LockedHint.Text = $"{layerText} — ロック中 — MO1/MO2でレイヤー切替 — Ctrl+Alt+L で編集";
+        _trayService.SetLayerText(layerText);
+    }
+
+    private void StartLayerSync()
+    {
+        if (!_settings.LayerSyncEnabled)
+        {
+            _trayService.SetSyncStatus("レイヤー同期: 無効");
+            return;
+        }
+
+        _layerListener = new LayerStatusListener(_settings.KeyboardDeviceName);
+        _layerListener.LayerChanged += OnLayerChanged;
+        _layerListener.PressedLabelsChanged += OnPressedLabelsChanged;
+        _layerListener.StatusChanged += (_, message) =>
+        {
+            Dispatcher.BeginInvoke(() => _pressTracker.SetHidStatus($"HID: {message}"));
+        };
+        _layerListener.Start();
+    }
+
+    private void OnPressedLabelsChanged(object? sender, IReadOnlyCollection<string> pressedLabels)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            _pressTracker.SetHidLabels(pressedLabels);
+        });
+    }
+
+    private void OnRawPressedLabelsChanged(object? sender, IReadOnlyCollection<string> pressedLabels)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            var keys = pressedLabels.Count == 0
+                ? "-"
+                : string.Join("+", pressedLabels);
+            _pressTracker.SetRawLabels(pressedLabels, $"Raw: keys={keys}");
+        });
+    }
+
+    private void OnRawLayerHintChanged(object? sender, int layer)
+    {
+        Dispatcher.BeginInvoke(() => ApplyLayer(layer, "Raw F-key"));
+    }
+
+    private void OnPressStateChanged(object? sender, KeyboardPressState state)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            var labels = RawKeyboardInputListener
+                .MergeWithLayerHoldLabels(state.PressedLabels, _activeLayer);
+            _renderer.SetPressedLabels(labels);
+            RenderKeymap();
+            _trayService.SetSyncStatus(state.Status);
+        });
+    }
+
+    private void OnLayerChanged(object? sender, int layer)
+    {
+        Dispatcher.BeginInvoke(() => ApplyLayer(layer, "HID"));
+    }
+
+    private void ApplyLayer(int layer, string source)
+    {
+        if (layer == _activeLayer)
+        {
+            return;
+        }
+
+        ShowLayer(layer);
+        _trayService.SetSyncStatus($"レイヤー {layer} ({source})");
     }
 
     private void RenderKeymap()
@@ -218,6 +321,16 @@ public partial class OverlayWindow : Window
 
     private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
+        if (msg == Win32WindowHelper.WmInput)
+        {
+            if (_rawKeyboardListener.ProcessInputMessage(lParam))
+            {
+                handled = true;
+            }
+
+            return IntPtr.Zero;
+        }
+
         if (msg == Win32WindowHelper.WmHotkey && wParam.ToInt32() == Win32WindowHelper.HotkeyToggleLock)
         {
             if (_isLocked)
@@ -260,6 +373,7 @@ public partial class OverlayWindow : Window
     private void OnClosing(object? sender, CancelEventArgs e)
     {
         Win32WindowHelper.UnregisterGlobalHotkey(this, Win32WindowHelper.HotkeyToggleLock);
+        _layerListener?.Dispose();
         _settings.Opacity = Opacity;
         _settings.IsLocked = _isLocked;
         _settings.Window.Left = Left;

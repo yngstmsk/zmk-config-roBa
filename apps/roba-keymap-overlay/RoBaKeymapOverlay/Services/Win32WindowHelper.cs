@@ -100,6 +100,7 @@ public static class Win32WindowHelper
     public const uint ModAlt = 0x0001;
     public const uint ModControl = 0x0002;
     public const int WmHotkey = 0x0312;
+    public const int WmInput = 0x00FF;
     public const int WmNcHitTest = 0x0084;
     public const int HotkeyToggleLock = 9001;
     public const uint VkL = 0x4C;
